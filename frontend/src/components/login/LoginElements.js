@@ -30,7 +30,7 @@ export const Icon = styled(Link)`
   text-decoration: none;
   color: #131313;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 2rem;
 
   @media screen and (max-width: 480px) {
     margin-left: 16px;
@@ -66,14 +66,14 @@ export const Form = styled.form`
 export const FormH1 = styled.h1`
   margin-bottom: 40px;
   color: #131313;
-  font-size: 20px;
+  font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
 `;
 
 export const FormLabel = styled.label`
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 1rem;
   color: #131313;
 `;
 export const FormInput = styled.input`
@@ -85,16 +85,30 @@ export const FormInput = styled.input`
 
 export const FormButton = styled.button`
   background: #fff;
-  padding: 16px 0;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
   border: none;
   border-radius: 4px;
   color: #131313;
-  font-size: 20px;
+  font-size: 1rem;
   cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0,0,0,.6);
+    color: white;
+    transition: background-color .5s, color .5s;
+  }
 `;
+
 export const Text = styled.span`
   text-align: center;
-  margin-top: 24px;
+  margin-top: 20px;
   color: #131313;
-  font-size: 14px;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    transition: all ease .3s;
+  }
 `;

@@ -1,15 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
-const list = () => {
+const board = () => {
     return (
         <StyledContainer>
-            <h1>List</h1>
+            <h1>Board</h1>
         </StyledContainer>
     )
 }
 
-export default list
+export default board
 
 const StyledContainer = styled.div`
   display: flex;

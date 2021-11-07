@@ -1,15 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
-const finder = () => {
+const profile = () => {
     return (
         <StyledContainer>
-            <h1>Finder</h1>
+            <h1>Profil</h1>
         </StyledContainer>
     )
 }
 
-export default finder
+export default profile
 
 const StyledContainer = styled.div`
   display: flex;

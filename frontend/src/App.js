@@ -1,18 +1,18 @@
 import * as React from "react";
 import './App.css'
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 import {BrowserRouter,
         Routes,
         Route
 } from "react-router-dom";
-import Home from "./pages/home";
-import About from "./pages/about";
-import Finder from "./pages/finder";
-import List from "./pages/list";
-import Board from "./pages/board"
-import Profile from "./pages/profile"
-import Login from "./components/Login/Login";
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
+import Finder from "./components/pages/Finder";
+import List from "./components/pages/List";
+import Board from "./components/pages/Board"
+import Profile from "./components/pages/Profile"
+import LoginPage from "./components/login/LoginPage";
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
         <Route path='/list' element={<List/>} />
         <Route path='/board' element={<Board/>} />
         <Route path='/profile' element={<Profile/>} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='/login' element={<LoginPage/>} />
     </Routes>
     <Footer />
 </BrowserRouter>

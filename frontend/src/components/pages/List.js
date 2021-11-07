@@ -1,15 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
-const home = () => {
+const list = () => {
     return (
         <StyledContainer>
-        <h1>Home</h1>
+            <h1>List</h1>
         </StyledContainer>
     )
 }
 
-export default home
+export default list
 
 const StyledContainer = styled.div`
   display: flex;

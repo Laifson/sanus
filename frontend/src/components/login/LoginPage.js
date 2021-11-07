@@ -9,10 +9,10 @@ import {
     FormLabel,
     FormInput,
     FormButton,
-    Text
+    Text,
 } from './LoginElements';
 
-const Login = () => {
+const LoginPage = () => {
     return (
         <>
             <Container>
@@ -20,13 +20,13 @@ const Login = () => {
                     <Icon to='/'>sanus</Icon>
                     <FormContent>
                         <Form action='#'>
-                            <FormH1>Bitte logge Dich ein, um die App zu benutzen.</FormH1>
-                            <FormLabel htmlFor='for'>Email</FormLabel>
+                            <FormH1>Bitte logge Dich ein, <br/> um die App zu benutzen.</FormH1>
+                            <FormLabel htmlFor='for'>E-Mail</FormLabel>
                             <FormInput type='email' required />
-                            <FormLabel htmlFor='for'>Password</FormLabel>
+                            <FormLabel htmlFor='for'>Passwort</FormLabel>
                             <FormInput type='password' required />
                             <FormButton type='submit'>Einloggen</FormButton>
-                            <Text>Noch keinen Account?</Text>
+                            <Text>Account anlegen.</Text>
                             <Text>Passwort vergessen?</Text>
                             <Text>Nutzernamen vergessen?</Text>
                         </Form>
@@ -37,4 +37,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginPage;
