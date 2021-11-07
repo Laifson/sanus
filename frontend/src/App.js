@@ -6,12 +6,12 @@ import {BrowserRouter,
         Routes,
         Route
 } from "react-router-dom";
-import home from "./pages/home";
-import about from "./pages/about";
-import finder from "./pages/finder";
-import list from "./pages/list";
-import board from "./pages/board"
-import profile from "./pages/profile"
+import Home from "./pages/home";
+import About from "./pages/about";
+import Finder from "./pages/finder";
+import List from "./pages/list";
+import Board from "./pages/board"
+import Profile from "./pages/profile"
 import Login from "./components/Login/Login";
 
 
@@ -21,12 +21,12 @@ function App() {
 <BrowserRouter>
     <Navbar/>
     <Routes>
-        <Route path='/' element={<home/>} />
-        <Route path="/about" element={<about/>} />
-        <Route path='/finder/*' element={<finder/>} />
-        <Route path='/list' element={<list/>} />
-        <Route path='/board' element={<board/>} />
-        <Route path='/profile' element={<profile/>} />
+        <Route path='/' element={Home} />
+        <Route path="/about" element={<About/>} />
+        <Route path='/finder/*' element={Finder} />
+        <Route path='/list' element={List} />
+        <Route path='/board' element={Board} />
+        <Route path='/profile' element={Profile} />
         <Route path='/login' element={<Login/>} />
     </Routes>
     <Footer />

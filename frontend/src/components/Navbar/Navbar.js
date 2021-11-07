@@ -19,10 +19,10 @@ export default function Navbar() {
                     Suchen
                 </NavLink>
                 <NavLink to="/list" activeStyle>
-                    Liste
+                    Übersicht
                 </NavLink>
                 <NavLink to="/board" activeStyle>
-                    Übersicht
+                    Board
                 </NavLink>
             </NavMenu>
             <NavBtn>
