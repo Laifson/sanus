@@ -17,7 +17,12 @@ export const FooterContainer = styled.footer`
   // }
 
   background: linear-gradient(25deg,#CFBAF0,#A3C4F3);
+  left: 0;
   bottom: 0;
+  right: 0;
+  position: absolute;
+  padding-top: 2rem;
+  box-shadow: 0 0 24px -16px #000;
 `;
 
 export const FooterWrap = styled.div`
