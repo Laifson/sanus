@@ -23,10 +23,10 @@ function App() {
     <Routes>
         <Route path='/' element={Home} />
         <Route path="/about" element={<About/>} />
-        <Route path='/finder/*' element={Finder} />
-        <Route path='/list' element={List} />
-        <Route path='/board' element={Board} />
-        <Route path='/profile' element={Profile} />
+        <Route path='/finder/*' element={<Finder/>} />
+        <Route path='/list' element={<List/>} />
+        <Route path='/board' element={<Board/>} />
+        <Route path='/profile' element={<Profile/>} />
         <Route path='/login' element={<Login/>} />
     </Routes>
     <Footer />
