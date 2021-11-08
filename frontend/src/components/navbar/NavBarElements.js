@@ -147,6 +147,12 @@ export const NavBtnLink = styled(Link)`
     border-radius: .75rem;
     color: #A3C4F3;
   }
+
+  &:target {
+    background-color: rgba(255,255,255,.75);
+    border-radius: .75rem;
+    color: #A3C4F3;
+  }
 `
 
 export const SocialLogo = styled(Link)`

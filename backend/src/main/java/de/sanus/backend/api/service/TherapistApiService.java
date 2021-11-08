@@ -13,7 +13,7 @@ public class PsychotherapistApiService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    private static final String API_URL = "https://api.kollegensuche.kbv.de/FHIR/PractitionerRole?arztgruppe=12&plz=56070";
+    private static final String API_URL = "https://api.kollegensuche.kbv.de/FHIR/PractitionerRole?arztgruppe=12";
 
 
     public PsychotherapistDTO getPsychotherapists() {
@@ -30,6 +30,13 @@ public class PsychotherapistApiService {
         if (response.getBody() == null) {
             throw new NoSuchElementException("couldn't receive data");
         }
+
+        for (int i = 0; i < response.getBody().getEntry().size(); i++) {
+            if (response.getBody().getEntry().get(i).getResource() == null) {
+                return null;
+            }
+        }
+
         return response.getBody();
     }
 }

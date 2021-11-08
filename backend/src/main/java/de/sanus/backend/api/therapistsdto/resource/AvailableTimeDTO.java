@@ -11,14 +11,16 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class NameDTO {
+public class AvailableTimeDTO {
 
-    @JsonProperty("given")
-    private List<String> given;
+    @JsonProperty("daysOfWeek")
+    private List<String> daysOfWeek;
 
-    @JsonProperty("family")
-    private String family;
+    @JsonProperty("availableStartTime")
+    private String availableStartTime;
+
+    @JsonProperty("availableEndTime")
+    private String availableEndTime;
 
 }

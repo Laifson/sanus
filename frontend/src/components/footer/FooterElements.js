@@ -20,7 +20,7 @@ export const FooterContainer = styled.footer`
   left: 0;
   bottom: 0;
   right: 0;
-  position: absolute;
+  //position: absolute;
   padding-top: 2rem;
   box-shadow: 0 0 24px -16px #000;
 `;

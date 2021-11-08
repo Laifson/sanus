@@ -55,11 +55,11 @@ const Searchbar = () => {
                                     <option value="2">Kinder und Jugendliche</option>
                                 </DropdownGroup>
                             </InputWrap>
-                        </SearchParamsRowBottom>
                         <BarrierWrap>
                             <FormLabel>Barrierefreier Zugang?</FormLabel>
                             <BarrierCheck type="checkbox"/>
                         </BarrierWrap>
+                        </SearchParamsRowBottom>
                         <ButtonWrapper>
                         <ResetButton>Suche zurücksetzen</ResetButton>
                         <SearchButton>Suchen</SearchButton>

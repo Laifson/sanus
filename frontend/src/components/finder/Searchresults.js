@@ -9,6 +9,7 @@ const Searchresults = () => {
             <AddAllButton>Alle Ergebnisse speichern</AddAllButton>
             </LabelAndButtonWrapper>
             <Divider/>
+            <h1>Cards</h1>
         </Container>
     );
 };

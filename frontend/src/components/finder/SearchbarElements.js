@@ -6,20 +6,11 @@ export const Container = styled.div`
 
 export const FormWrap = styled.div`
   height: 100%;
-  display: flex;
 
   @media screen and (max-width: 400px) {
     height: 80%;
   }
 `;
-
-export const SearchParamsRowTop = styled.div`
-
-`
-
-export const SearchParamsRowBottom = styled.div`
-
-`
 
 export const Form = styled.form`
   display: grid;
@@ -29,6 +20,16 @@ export const Form = styled.form`
     flex-direction: column;
   }
 `;
+
+export const SearchParamsRowTop = styled.div`
+ grid-column: 1 / 3;
+  grid-row: 1;
+`
+
+export const SearchParamsRowBottom = styled.div`
+  grid-column: 1 / 3;
+  grid-row: 2;
+`
 
 export const InputWrap = styled.div`
   display: flex;
@@ -130,7 +131,8 @@ export const BarrierCheck = styled.input`
 `;
 
 export const ButtonWrapper = styled.div`
-  grid-area: ButtonWrapper;
+  grid-column: 3;
+  grid-row: 3;
 `
 
 export const ResetButton = styled.button`

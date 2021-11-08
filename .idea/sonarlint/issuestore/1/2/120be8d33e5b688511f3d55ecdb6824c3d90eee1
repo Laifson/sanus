@@ -1,0 +1,12 @@
+
+X	java:S125"<This block of commented-out lines of code should be removed.(ùıÀ•8—Ï¹ÍÏ/
+v
+java:S1128"YRemove this unused import 'de.sanus.backend.api.dto.psychotherapists.PsychotherapistDTO'.(Ôœ‡8˜Ï¹ÍÏ/
+p
+java:S1128"SRemove this unused import 'de.sanus.backend.api.service.PsychotherapistApiService'.(¼µ¥Ò8˜Ï¹ÍÏ/
+q
+java:S1128"ORemove this unused import 'de.sanus.backend.api.service.PsychotherapistMapper'.(üæÍ«ûÿÿÿÿ8˜Ï¹ÍÏ/
+_
+java:S1128"CRemove this unused import 'de.sanus.backend.model.Psychotherapist'.(¸Ô»y8˜Ï¹ÍÏ/
+M
+java:S1128	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8˜Ï¹ÍÏ/
