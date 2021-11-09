@@ -1,21 +1,17 @@
 package de.sanus.backend.controller;
 
-import de.sanus.backend.model.Psychotherapist;
-import de.sanus.backend.service.PsychotherapistService;
-import org.springframework.web.bind.annotation.GetMapping;
+import de.sanus.backend.service.TherapistService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("psy")
-public class PsychotherapistController {
+public class TherapistController {
 
-    private final PsychotherapistService psychotherapistService;
+    private final TherapistService therapistService;
 
-    public PsychotherapistController(PsychotherapistService psychotherapistService) {
-        this.psychotherapistService = psychotherapistService;
+    public TherapistController(TherapistService therapistService) {
+        this.therapistService = therapistService;
     }
 
 //    @GetMapping

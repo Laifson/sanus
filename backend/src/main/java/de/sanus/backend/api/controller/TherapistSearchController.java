@@ -1,26 +1,25 @@
 package de.sanus.backend.api.controller;
 
-import de.sanus.backend.api.dto.psychotherapists.PsychotherapistDTO;
-import de.sanus.backend.api.service.PsychotherapistApiService;
+import de.sanus.backend.api.dto.TherapistDto;
+import de.sanus.backend.api.service.TherapistApiService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/search")
-public class PsychotherapistSearchController {
+public class TherapistSearchController {
 
-    private final PsychotherapistApiService psychotherapistApiService;
+    private final TherapistApiService therapistApiService;
 
-    public PsychotherapistSearchController(PsychotherapistApiService psychotherapistApiService) {
-        this.psychotherapistApiService = psychotherapistApiService;
+    public TherapistSearchController(TherapistApiService therapistApiService) {
+        this.therapistApiService = therapistApiService;
     }
 
     @GetMapping
-    @RequestMapping("/ort")
-    public PsychotherapistDTO searchForCity() {
-        return psychotherapistApiService.getPsychotherapists();
+    @RequestMapping("/therapists")
+    public TherapistDto searchForCity() {
+        return therapistApiService.getPsychotherapists();
     }
 
 }
