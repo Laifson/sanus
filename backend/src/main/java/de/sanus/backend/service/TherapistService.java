@@ -13,48 +13,47 @@ import java.util.NoSuchElementException;
 @Service
 public class TherapistService {
 
-    private final TherapistRepo therapistRepo;
-    private final TherapistApiService therapistApiService;
-    private final TherapistApiMapper therapistApiMapper;
-    private final IdService idService;
-
-    @Autowired
-    public TherapistService(TherapistRepo therapistRepo, TherapistApiService therapistApiService, TherapistApiMapper therapistApiMapper, IdService idService) {
-        this.therapistRepo = therapistRepo;
-        this.therapistApiService = therapistApiService;
-        this.therapistApiMapper = therapistApiMapper;
-        this.idService = idService;
-    }
-
+//    private final TherapistRepo therapistRepo;
+//    private final IdService idService;
+//
+//    @Autowired
+//    public TherapistService(TherapistRepo therapistRepo, IdService idService) {
+//        this.therapistRepo = therapistRepo;
+//        this.idService = idService;
+//    }
+//
 //    public List<Therapist> getSearchedTherapists() {
-//        return therapistApiMapper.getMappedTherapists();
+////        return therapistApiMapper.getMappedTherapists();
+//        return null;
 //    }
 //
 //    public Therapist addSearchedTherapist(Therapist therapistDto) {
-//        therapistApiMapper.mapToTherapist(therapistApiService.filterTherapists()).save();
+////        therapistApiMapper.mapToTherapist(therapistApiService.filterTherapists()).save();
+//        return null;
 //    }
 //
 //    public Therapist addAllSearchedTherapists(Therapist therapistDto) {
-//        therapistApiMapper.mapToTherapist(therapistApiService.filterTherapists()).saveAll();
+////        therapistApiMapper.mapToTherapist(therapistApiService.filterTherapists()).saveAll();
+//        return null;
 //    }
-
-    public List<Therapist> getSavedTherapists() {
-        return therapistRepo.findAll();
-    }
-
-    public void deleteSavedTherapist(String id) {
-        therapistRepo.deleteById(id);
-    }
-
-    public Therapist updateSavedTherapist(Therapist therapistDto) {
-        if(therapistRepo.existsById(therapistDto.getId())) {
-            Therapist therapist = new Therapist();
-            therapist.setId(idService.generateId());
-            therapist.setStatus(Status.OPEN);
-            return therapistRepo.save(therapist);
-        } else {
-            throw new NoSuchElementException("Could not update therapist element. Element with id " + therapistDto.getId() + "does not exist.");
-        }
-    }
+//
+//    public List<Therapist> getSavedTherapists() {
+//        return therapistRepo.findAll();
+//    }
+//
+//    public void deleteSavedTherapist(String id) {
+//        therapistRepo.deleteById(id);
+//    }
+//
+//    public Therapist updateSavedTherapist(Therapist therapistDto) {
+//        if(therapistRepo.existsById(therapistDto.getId())) {
+//            Therapist therapist = new Therapist();
+//            therapist.setId(idService.generateId());
+//            therapist.setStatus(Status.OPEN);
+//            return therapistRepo.save(therapist);
+//        } else {
+//            throw new NoSuchElementException("Could not update therapist element. Element with id " + therapistDto.getId() + "does not exist.");
+//        }
+//    }
 
 }

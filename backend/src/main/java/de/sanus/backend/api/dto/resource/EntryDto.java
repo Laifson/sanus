@@ -11,8 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EntryDto {
 
+    private String id;
+
     /* entry > i > resource */
     @JsonProperty("resource")
     private ResourceDto resource;
+
+    /* entry > i > fullUrl */
+    @JsonProperty("fullUrl")
+    private String fullUrl;
 
 }

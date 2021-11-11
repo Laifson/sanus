@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class TherapistDto {
+public class KbvResultDto {
 
     /* entry > i > .. */
     @JsonProperty("entry")
