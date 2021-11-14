@@ -1,19 +1,29 @@
-import React from "react";
-import styled from "styled-components/macro";
-import Searchbar from "../finder/Searchbar";
-import Searchresults from "../finder/Searchresults";
+import React, {useEffect, useState} from "react";
+import styled from "styled-components";
+import SearchBar from "../finder/SearchBar";
+import SearchResults from "../finder/SearchResults";
+import axios from "axios";
 
 
-const finder = () => {
+export default function Finder() {
+    const [cardData, setCardData] = useState([]);
+
+    const allCardData = async() => {
+        const response = await axios.get('/api/search')
+        setCardData(response.data)
+    }
+
+    useEffect(() => {
+        allCardData()
+    }, [])
+
     return (
         <Container>
-            <Searchbar/>
-            <Searchresults/>
+            <SearchBar allCardData={allCardData}/>
+            <SearchResults therapists={cardData}/>
         </Container>
     )
 }
-
-export default finder
 
 const Container = styled.div`
   display: grid;

@@ -16,9 +16,9 @@ import {
     SearchButton, ButtonWrapper,
 } from './SearchbarElements';
 
-const Searchbar = () => {
+const SearchBar = ({ allCardData }) => {
+
     return (
-        <>
             <Container>
                 <FormWrap>
                     <Form action='#'>
@@ -62,13 +62,12 @@ const Searchbar = () => {
                         </SearchParamsRowBottom>
                         <ButtonWrapper>
                         <ResetButton>Suche zurücksetzen</ResetButton>
-                        <SearchButton>Suchen</SearchButton>
+                            {allCardData && <SearchButton onClick={() => allCardData}>Suchen</SearchButton>}
                         </ButtonWrapper>
                     </Form>
                 </FormWrap>
             </Container>
-        </>
     );
 };
 
-export default Searchbar;
+export default SearchBar;

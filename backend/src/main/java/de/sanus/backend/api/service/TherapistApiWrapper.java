@@ -2,7 +2,6 @@ package de.sanus.backend.api.service;
 
 import de.sanus.backend.api.dto.PractitionerEntriesDto;
 import de.sanus.backend.api.dto.resource.EntryDto;
-import de.sanus.backend.service.IdService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

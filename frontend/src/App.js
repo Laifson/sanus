@@ -14,7 +14,6 @@ import Board from "./components/pages/Board"
 import Profile from "./components/pages/Profile"
 import LoginPage from "./components/login/LoginPage";
 
-
 function App() {
 
     return (
@@ -23,7 +22,7 @@ function App() {
     <Routes>
         <Route path='/' element={<Home/>} />
         <Route path="/about" element={<About/>} />
-        <Route path='/finder/*' element={<Finder/>} />
+        <Route path='/finder/*' element={<Finder/> } />
         <Route path='/list' element={<List/>} />
         <Route path='/board' element={<Board/>} />
         <Route path='/profile' element={<Profile/>} />

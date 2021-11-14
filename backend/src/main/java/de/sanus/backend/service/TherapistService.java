@@ -1,59 +1,49 @@
 package de.sanus.backend.service;
 
 import de.sanus.backend.api.service.TherapistApiService;
+import de.sanus.backend.api.service.TherapistApiWrapper;
 import de.sanus.backend.model.Therapist;
-import de.sanus.backend.model.enums.Status;
 import de.sanus.backend.repo.TherapistRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class TherapistService {
 
-//    private final TherapistRepo therapistRepo;
-//    private final IdService idService;
-//
-//    @Autowired
-//    public TherapistService(TherapistRepo therapistRepo, IdService idService) {
-//        this.therapistRepo = therapistRepo;
-//        this.idService = idService;
-//    }
-//
-//    public List<Therapist> getSearchedTherapists() {
-////        return therapistApiMapper.getMappedTherapists();
-//        return null;
-//    }
-//
-//    public Therapist addSearchedTherapist(Therapist therapistDto) {
-////        therapistApiMapper.mapToTherapist(therapistApiService.filterTherapists()).save();
-//        return null;
-//    }
-//
-//    public Therapist addAllSearchedTherapists(Therapist therapistDto) {
-////        therapistApiMapper.mapToTherapist(therapistApiService.filterTherapists()).saveAll();
-//        return null;
-//    }
-//
-//    public List<Therapist> getSavedTherapists() {
-//        return therapistRepo.findAll();
-//    }
-//
-//    public void deleteSavedTherapist(String id) {
-//        therapistRepo.deleteById(id);
-//    }
-//
-//    public Therapist updateSavedTherapist(Therapist therapistDto) {
-//        if(therapistRepo.existsById(therapistDto.getId())) {
-//            Therapist therapist = new Therapist();
-//            therapist.setId(idService.generateId());
-//            therapist.setStatus(Status.OPEN);
-//            return therapistRepo.save(therapist);
-//        } else {
-//            throw new NoSuchElementException("Could not update therapist element. Element with id " + therapistDto.getId() + "does not exist.");
-//        }
-//    }
+    private final KbvApiMapper kbvApiMapper;
+    private final TherapistApiService therapistApiService;
+    private final TherapistApiWrapper therapistApiWrapper;
+    private final TherapistRepo therapistRepo;
+
+    @Autowired
+    public TherapistService(KbvApiMapper kbvApiMapper, TherapistApiService therapistApiService, TherapistApiWrapper therapistApiWrapper, TherapistRepo therapistRepo) {
+        this.kbvApiMapper = kbvApiMapper;
+        this.therapistApiService = therapistApiService;
+        this.therapistApiWrapper = therapistApiWrapper;
+        this.therapistRepo = therapistRepo;
+    }
+
+    public List<Therapist> searchTherapists() {
+        return kbvApiMapper.mapToTherapist(therapistApiWrapper.filterEntries(therapistApiService.getTherapists().getEntry()));
+    }
+
+    public void addTherapist(Therapist therapist) {
+        therapistRepo.save(therapist);
+    }
+
+    public void addAllTherapists(List<Therapist> therapistList) {
+        therapistRepo.saveAll(therapistList);
+    }
+
+    public List<Therapist> getTherapists() {
+        return therapistRepo.findAll();
+    }
+
+    public void deleteTherapist(String id) {
+        therapistRepo.deleteById(id);
+    }
+
 
 }
