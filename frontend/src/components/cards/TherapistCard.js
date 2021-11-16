@@ -1,31 +1,23 @@
 import * as React from 'react';
-import styled from 'styled-components'
+import {Container, TherapistsName, TherapistGender, CardHeader} from './TherapistCardElements';
 
-export default function TherapistCard({ cardData, onSave, onExpand, onDelete }) {
+export default function TherapistCard({therapist, onSave, onExpand, onDelete}) {
+
+    const gender = therapist.gender === "female" ? (<TherapistGender>female</TherapistGender>) : (
+        <TherapistGender>male</TherapistGender>);
 
     return (
-        <Wrapper>
-        <Name>
-            {cardData.title}
-            {cardData.firstName}
-            {cardData.lastName}
-        </Name>
-            {onSave && <button onClick={() => onSave(cardData.id)}>Speichern</button>}
-            {onDelete && <button onClick={() => onDelete(cardData.id)}>Löschen</button>}
-            {onExpand && <button onClick={() => onExpand(cardData.id)}>Weitere Informationen</button>}
-        </Wrapper>
+        <Container>
+            <CardHeader>
+            <TherapistsName>
+                {therapist.title} {therapist.firstName} {therapist.lastName}
+            </TherapistsName>
+                {gender}
+            </CardHeader>
+            {onSave && <button onClick={() => onSave(therapist.id)}>Speichern</button>}
+            {onDelete && <button onClick={() => onDelete(therapist.id)}>Löschen</button>}
+            {onExpand && <button onClick={() => onExpand(therapist.id)}>Weitere Informationen</button>}
+        </Container>
     )
 
 }
-
-const Wrapper = styled.div`
-  border: 3px solid darkblue;
-  background-color: ghostwhite;
-  border-radius: 12px;
-  padding: 12px;
-  margin: 12px;
-`
-
-const Name = styled.section`
-  padding: 0.5em;
-`

@@ -1,35 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import SearchBar from "../finder/SearchBar";
 import SearchResults from "../finder/SearchResults";
-import axios from "axios";
+import {searchCardData} from "../../service/kv-api-service";
 
 
 export default function Finder() {
     const [cardData, setCardData] = useState([]);
 
-    const allCardData = async() => {
-        const response = await axios.get('/api/search')
-        setCardData(response.data)
+    const handleSearchButton = (params) => {
+        searchCardData(params)
+            .then(x => {console.log(x); setCardData(x)})
+            .catch(error => console.error(error))
     }
-
-    useEffect(() => {
-        allCardData()
-    }, [])
 
     return (
         <Container>
-            <SearchBar allCardData={allCardData}/>
-            <SearchResults therapists={cardData}/>
+            <SearchBar handleSearchButton={handleSearchButton}/>
+            <SearchResults cardData={cardData}/>
         </Container>
     )
 }
 
 const Container = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 5rem 0 0 5rem;
+
 `
