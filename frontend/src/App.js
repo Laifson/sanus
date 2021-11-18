@@ -1,6 +1,5 @@
 import * as React from "react";
 import NavBarTop from "./components/navbar/NavBarTop";
-import Footer from "./components/footer/Footer";
 import {BrowserRouter,
         Routes,
         Route
@@ -32,7 +31,6 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/login' element={<LoginPage/>} />
     </Routes>
-    <Footer />
 </BrowserRouter>
     )
 }

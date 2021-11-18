@@ -1,9 +1,7 @@
 package de.sanus.backend.service;
 
 import de.sanus.backend.api.dto.PractitionerEntriesDto;
-import de.sanus.backend.api.dto.resource.ExtensionDto;
-import de.sanus.backend.api.dto.resource.NameDto;
-import de.sanus.backend.api.dto.resource.TelecomDto;
+import de.sanus.backend.api.dto.resource.*;
 import de.sanus.backend.model.Therapist;
 import de.sanus.backend.model.enums.Accessibility;
 import de.sanus.backend.model.enums.Status;
@@ -12,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -41,7 +41,7 @@ public class KbvApiMapper {
                         .city(e.getOrganizationEntry().getResource().getAddress().get(0).getCity())
                         .languages(getLanguages(e.getPractitionerEntry().getResource().getExtension()))
                         .forChildren(e.getPractitionerEntry().getResource().getQualification().get(0).getCode().getCoding().get(0).getDisplay().contains("Kinder"))
-                        .accessibility(getAccessibilityStatus(e.getLocationEntry().getResource().getExtension()))
+                        .accessibility((getAccessibilityStatus(e.getLocationEntry().getResource().getExtension())))
                         .status(Status.OPEN)
                         .build()
         ));
@@ -55,7 +55,7 @@ public class KbvApiMapper {
         String title = null;
 
         if (nameDto.getPrefix() != null) {
-            title = nameDto.getPrefix().get(0).toString();
+            title = nameDto.getPrefix().get(0);
         }
         return title;
     }
@@ -72,11 +72,25 @@ public class KbvApiMapper {
     }
 
     private boolean accessibilityFull(List<ExtensionDto> extensions) {
-        return extensions.stream().anyMatch(e -> e.getValueCodeableConcept().getCoding().get(0).getDisplay().contains("uneingeschränkt"));
+        ValueCodeableConceptDto extensionDtoHelper = null;
+        for (ExtensionDto extensionDto : extensions) {
+            if (extensionDto.getValueCodeableConcept() != null) {
+                extensionDtoHelper = extensionDto.getValueCodeableConcept();
+                return extensionDtoHelper.getCoding().get(0).getDisplay().contains("uneingeschränkt");
+            }
+        }
+        return false;
     }
 
     private boolean accessibilityRestricted(List<ExtensionDto> extensions) {
-        return extensions.stream().anyMatch(e -> e.getValueCodeableConcept().getCoding().get(0).getDisplay().contains("gehbehinderte"));
+        ValueCodeableConceptDto extensionDtoHelper = null;
+        for (ExtensionDto extensionDto : extensions) {
+            if (extensionDto.getValueCodeableConcept() != null) {
+                extensionDtoHelper = extensionDto.getValueCodeableConcept();
+                return extensionDtoHelper.getCoding().get(0).getDisplay().contains("gehbehinderte");
+            }
+        }
+        return false;
     }
 
     private String getPhoneNumber(List<TelecomDto> telecomList) {

@@ -4,36 +4,36 @@ import {
     IconList,
     IconBoard,
     IconSearch,
-    IconInfo,
+    IconHome,
+    IconButtonHome,
     IconButtonList,
     IconButtonBoard,
     IconButtonSearch,
-    IconButtonInfo,
+    IconButtonHomeName,
     IconButtonListName,
     IconButtonBoardName,
     IconButtonSearchName,
-    IconButtonInfoName,
 } from './NavBarBottomElements'
 
 export default function NavBarBottom() {
     return (
         <Nav>
-            <IconList>
-            <IconButtonList to="/overview">inventory</IconButtonList>
+            <IconHome to="/info">
+                <IconButtonHome>home</IconButtonHome>
+                <IconButtonHomeName>Home</IconButtonHomeName>
+            </IconHome>
+            <IconList to="/list">
+            <IconButtonList>inventory</IconButtonList>
             <IconButtonListName>Übersicht</IconButtonListName>
             </IconList>
-            <IconBoard>
-            <IconButtonBoard to="/board">view_kanban</IconButtonBoard>
+            <IconBoard to="/">
+            <IconButtonBoard>view_kanban</IconButtonBoard>
             <IconButtonBoardName>Board</IconButtonBoardName>
             </IconBoard>
-            <IconSearch>
-            <IconButtonSearch to="/finder">person_search</IconButtonSearch>
-            <IconButtonSearchName>Suche</IconButtonSearchName>
+            <IconSearch to="/finder">
+            <IconButtonSearch>person_search</IconButtonSearch>
+            <IconButtonSearchName>Finder</IconButtonSearchName>
             </IconSearch>
-            <IconInfo>
-            <IconButtonInfo to="/info">emoji_objects</IconButtonInfo>
-            <IconButtonInfoName>Info</IconButtonInfoName>
-            </IconInfo>
         </Nav>
     );
 
