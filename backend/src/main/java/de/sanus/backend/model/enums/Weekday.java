@@ -1,6 +1,6 @@
 package de.sanus.backend.model.enums;
 
-public enum Weekdays {
+public enum Weekday {
     SUNDAY,
     MONDAY,
     TUESDAY,

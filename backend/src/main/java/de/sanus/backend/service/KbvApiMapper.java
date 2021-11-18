@@ -50,11 +50,12 @@ public class KbvApiMapper {
 
     }
 
+
     private String getTitle(NameDto nameDto) {
         String title = null;
 
         if (nameDto.getPrefix() != null) {
-            title = nameDto.getPrefix().toString();
+            title = nameDto.getPrefix().get(0).toString();
         }
         return title;
     }
@@ -111,7 +112,7 @@ public class KbvApiMapper {
 
         if (telecomList != null) {
             for (TelecomDto telecom : telecomList) {
-                if (telecom.getSystem().contains("email")) {
+                if (telecom.getSystem().contains("url")) {
                     website = telecom.getValue();
                 }
             }

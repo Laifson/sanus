@@ -1,6 +1,5 @@
 import * as React from "react";
-import './App.css'
-import Navbar from "./components/navbar/Navbar";
+import NavBarTop from "./components/navbar/NavBarTop";
 import Footer from "./components/footer/Footer";
 import {BrowserRouter,
         Routes,
@@ -13,12 +12,17 @@ import List from "./components/pages/List";
 import Board from "./components/pages/Board"
 import Profile from "./components/pages/Profile"
 import LoginPage from "./components/login/LoginPage";
+import NavBarBottom from "./components/navbar/NavBarBottom";
+import GlobalStyle from "./components/styles/GlobalStyle";
+
 
 function App() {
 
     return (
 <BrowserRouter>
-    <Navbar/>
+    <GlobalStyle/>
+    <NavBarTop/>
+    <NavBarBottom/>
     <Routes>
         <Route path='/' element={<Home/>} />
         <Route path="/about" element={<About/>} />

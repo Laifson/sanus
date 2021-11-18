@@ -1,23 +1,22 @@
-import {searchTherapists} from "../service/kv-api-service";
-import {useEffect, useState} from "react";
-import axios from "axios";
-
+import { useState } from 'react'
+import {
+    saveAllSearchedCards,
+    searchCardData,
+} from '../service/kv-api-service'
 
 export default function useSearchTherapists() {
     const [cardData, setCardData] = useState([]);
 
-const onSearch = () => {
-    setCardData(searchTherapists)
-}
-
-const allCardData = async() => {
-        const response = await axios.get('api/search')
-    setCardData(response.data)
+    const handleSearchButton = (params) => {
+        searchCardData(params)
+            .then(setCardData)
+            .catch(error => console.error(error))
     }
 
-    useEffect(() => {
-        allCardData()
-    }, [])
+    const handleSaveAll = () => {
+        saveAllSearchedCards(cardData)
+            .catch(error => console.error(error))
+    }
 
-    return { cardData, onSearch, allCardData }
+    return { cardData, setCardData, handleSearchButton, handleSaveAll }
 }

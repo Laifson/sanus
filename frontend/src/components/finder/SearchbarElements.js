@@ -1,44 +1,63 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  min-height: 100%;
-`;
-
-export const FormWrap = styled.div`
-  height: 100%;
-
-  @media screen and (max-width: 400px) {
-    height: 80%;
-  }
-`;
-
 export const Form = styled.form`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  
-  @media screen and (max-width: 400px) {
-    flex-direction: column;
+  grid-template-areas: 
+  "CityField" "NameField" 
+  "PostalField" "RadiusField"
+  "GroupField" "BarrierField"
+  "ResetButton" "SubmitButton";
+
+  @media screen and (max-width: 768px) {
+    grid-template-areas: 
+    "CityField" 
+    "NameField"
+    "PostalField" "RadiusField"
+    "GroupField" "BarrierField"
+    "ResetButton" "SubmitButton";
   }
 `;
 
-export const SearchParamsRowTop = styled.div`
- grid-column: 1 / 3;
-  grid-row: 1;
+export const CityField = styled.section`
+  grid-area: CityField;
 `
 
-export const SearchParamsRowBottom = styled.div`
-  grid-column: 1 / 3;
-  grid-row: 2;
+export const NameField = styled.section`
+  grid-area: NameField;
+`
+
+export const PostalField = styled.section`
+  grid-area: PostalField;
+`
+
+export const RadiusField = styled.section`
+  grid-area: RadiusField;
+`
+
+export const GroupField = styled.section`
+  grid-area: GroupField;
+`
+
+export const BarrierField = styled.section`
+  grid-area: BarrierField;
+`
+
+export const ResetButtonField = styled.section`
+  grid-area: BarrierField;
+`
+
+export const SubmitButtonField = styled.section`
+  grid-area: BarrierField;
 `
 
 export const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin: .3rem;
 `;
 
 export const FormLabel = styled.label`
   margin-bottom: .1rem;
+  margin-left: .5rem;
   font-size: 1.2rem;
   color: #363636;
 `;
@@ -46,7 +65,7 @@ export const FormLabel = styled.label`
 export const FormInput = styled.input`
   padding: 16px 16px;
   margin-bottom: 32px;
-  border: 2px solid rgba(0, 0, 0, .1);
+  border: 2px solid rgba(0, 0, 0, .2);
   border-radius: 4px;
   height: .3rem;
   outline: none;

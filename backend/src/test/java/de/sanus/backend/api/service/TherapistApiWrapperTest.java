@@ -2,11 +2,14 @@ package de.sanus.backend.api.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.sanus.backend.api.dto.KbvResultDto;
+import de.sanus.backend.api.dto.PractitionerEntriesDto;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 class TherapistApiWrapperTest {
@@ -19,13 +22,15 @@ class TherapistApiWrapperTest {
     void filterEntriesTest() throws IOException {
 
         //given
-        KbvResultDto obj = mapper.readValue(new File("example.json"), KbvResultDto.class);
+        KbvResultDto response = mapper.readValue(new File("example.json"), KbvResultDto.class);
 
         KbvResultDto excepted = mapper.readValue(new File("wrapped-example.json"), KbvResultDto.class);
 
         //when
-        therapistApiWrapper.filterEntries(obj);
+        List<PractitionerEntriesDto> actual = therapistApiWrapper.filterEntries(response.getEntry());
 
         //then
+        Assertions.assertEquals(actual, excepted);
+
     }
 }

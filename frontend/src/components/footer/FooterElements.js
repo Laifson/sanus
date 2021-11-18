@@ -23,6 +23,10 @@ export const FooterContainer = styled.footer`
   //position: absolute;
   padding-top: 2rem;
   box-shadow: 0 0 24px -16px #000;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const FooterWrap = styled.div`

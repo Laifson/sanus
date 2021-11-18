@@ -1,15 +1,20 @@
 import React from "react";
 import styled from "styled-components/macro";
+import useTherapists from "../../hooks/useTherapists";
+import TherapistCard from "../cards/TherapistCard";
 
-const list = () => {
+export default function List() {
+    const { therapists } = useTherapists();
+
+
+
+
     return (
         <StyledContainer>
-            <h1>List</h1>
+            {therapists.map(therapist => <TherapistCard key={therapist.id} therapist={therapist}/>)}
         </StyledContainer>
     )
 }
-
-export default list
 
 const StyledContainer = styled.div`
   display: flex;

@@ -1,44 +1,49 @@
 package de.sanus.backend.service;
 
 import de.sanus.backend.api.service.TherapistApiService;
-import de.sanus.backend.api.service.TherapistApiWrapper;
 import de.sanus.backend.model.Therapist;
 import de.sanus.backend.repo.TherapistRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class TherapistService {
 
     private final KbvApiMapper kbvApiMapper;
     private final TherapistApiService therapistApiService;
-    private final TherapistApiWrapper therapistApiWrapper;
     private final TherapistRepo therapistRepo;
 
-    @Autowired
-    public TherapistService(KbvApiMapper kbvApiMapper, TherapistApiService therapistApiService, TherapistApiWrapper therapistApiWrapper, TherapistRepo therapistRepo) {
+    public TherapistService(TherapistRepo therapistRepo, KbvApiMapper kbvApiMapper, TherapistApiService therapistApiService) {
+        this.therapistRepo = therapistRepo;
         this.kbvApiMapper = kbvApiMapper;
         this.therapistApiService = therapistApiService;
-        this.therapistApiWrapper = therapistApiWrapper;
-        this.therapistRepo = therapistRepo;
+
     }
 
-    public List<Therapist> searchTherapists() {
-        return kbvApiMapper.mapToTherapist(therapistApiWrapper.filterEntries(therapistApiService.getTherapists().getEntry()));
+    public List<Therapist> searchTherapists(String params) {
+        return kbvApiMapper.mapToTherapist(therapistApiService.filterEntries(params));
     }
 
-    public void addTherapist(Therapist therapist) {
-        therapistRepo.save(therapist);
+    public Therapist addTherapist(Therapist therapist) {
+        return therapistRepo.save(therapist);
     }
 
-    public void addAllTherapists(List<Therapist> therapistList) {
-        therapistRepo.saveAll(therapistList);
+    public Iterable<Therapist> addAllTherapists(Iterable<Therapist> therapistList) {
+        return therapistRepo.saveAll(therapistList);
     }
 
     public List<Therapist> getTherapists() {
         return therapistRepo.findAll();
+    }
+
+    public Therapist updateTherapist(Therapist therapist) {
+        if(therapistRepo.existsById(therapist.getId())) {
+            return therapistRepo.save(therapist);
+        } else {
+            throw new NoSuchElementException("Could not update element! Element with id does not exist: " + therapist.getId());
+        }
     }
 
     public void deleteTherapist(String id) {

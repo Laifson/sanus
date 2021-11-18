@@ -1,22 +1,23 @@
-import { useContext, useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import {
-    searchPsychotherapists,
+    getSavedTherapists,
 } from '../service/kv-api-service'
 
 export default function useTherapists() {
     const [therapists, setTherapists] = useState([])
 
-    const onSearch = () => {
-        searchPsychotherapists()
-            .then(therapists => setTherapists(therapists))
-            .catch(error => console.error(error.message))
+    const getTherapists = () => {
+        getSavedTherapists()
+            .then(setTherapists)
+            .catch(error => console.error(error))
     }
 
     useEffect(() => {
-        searchPsychotherapists()
+        getSavedTherapists()
             .then(therapists => setTherapists(therapists))
             .catch(error => console.error(error.message))
     }, [])
 
-    return { therapists }
+    return { therapists, setTherapists, getTherapists }
+
 }
