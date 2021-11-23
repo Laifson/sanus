@@ -6,8 +6,10 @@ import de.sanus.backend.model.Therapist;
 import de.sanus.backend.model.enums.Accessibility;
 import de.sanus.backend.model.enums.Status;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -43,6 +45,7 @@ public class KbvApiMapper {
                         .forChildren(e.getPractitionerEntry().getResource().getQualification().get(0).getCode().getCoding().get(0).getDisplay().contains("Kinder"))
                         .accessibility((getAccessibilityStatus(e.getLocationEntry().getResource().getExtension())))
                         .status(Status.OPEN)
+                        .dateAdded(System.currentTimeMillis())
                         .build()
         ));
 

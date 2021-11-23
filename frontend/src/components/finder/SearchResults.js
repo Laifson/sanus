@@ -1,29 +1,29 @@
 import React from 'react';
-import {AddAllButton, Container, ResultLabel, Divider, LabelAndButtonWrapper} from "./SearchresultsElements";
-import TherapistCard from "../cards/TherapistCard";
-import styled from 'styled-components'
+import {Container, CardContainer, ResultLabel, Divider, LabelAndButtonWrapper, Spinner} from "./SearchresultsElements";
+import ResultCard from "../cards/ResultCard";
 
-export default function SearchResults({cardData, handleSaveAll}) {
+export default function SearchResults({loading, cardData, setCardData, handleSaveAll, handleSave}) {
+
+    const dateTime = new Date().getTime();
+
+    const handleSaveAllButton = event => {
+        event.preventDefault()
+        cardData.forEach(() => cardData.dateAdded === dateTime)
+        handleSaveAll(cardData)
+    }
 
     return (
-
         <Container>
             <LabelAndButtonWrapper>
                 <ResultLabel>{cardData.length} Ergebnisse: </ResultLabel>
-                <AddAllButton onClick={handleSaveAll}>Alle Ergebnisse speichern</AddAllButton>
+                <button class="button" onClick={handleSaveAllButton}>Alle Ergebnisse speichern</button>
             </LabelAndButtonWrapper>
             <Divider/>
-            <SearchResultElements>
-                {cardData.map(therapist => <TherapistCard key={therapist.id} therapist={therapist}/>)}
-            </SearchResultElements>
+            <CardContainer>
+                {loading ? <>Loading... <Spinner/></> : null}
+                {cardData.map(therapist => <ResultCard key={therapist.id} therapist={therapist}
+                                                       handleSave={handleSave}/>)}
+            </CardContainer>
         </Container>
     );
 }
-
-
-const SearchResultElements = styled.section`
-  grid-template-columns: 100px 50px 100px;
-  grid-template-rows: 80px auto 80px;
-  column-gap: 10px;
-  row-gap: 15px;
-`

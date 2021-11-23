@@ -37,4 +37,6 @@ public class Therapist {
     private Accessibility accessibility;
     private Status status;
 
+    private Long dateAdded;
+
 }

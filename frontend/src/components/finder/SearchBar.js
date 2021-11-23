@@ -1,37 +1,21 @@
 import React, {useState} from 'react';
 import {
-    CityField,
-    NameField,
-    PostalField,
-    RadiusField,
-    GroupField,
-    BarrierField,
-    ResetButtonField,
-    SubmitButtonField,
     Form,
-    FormLabel,
     InputWrap,
-    FormInput,
-    DropdownGroup,
-    DropdownRadius,
-    BarrierWrap,
-    BarrierCheck,
-    ResetButton,
-    SearchButton, ButtonWrapper,
+    SelectAndButtonWrapper,
 } from './SearchbarElements';
 
 const SearchBar = ({handleSearchButton, setCardData}) => {
     const [paramValue, setParamValue] = useState({
-        city: "",
-        postalCode: "",
-        radius: "5km",
-        lastName: "",
+        searchTerm: "",
+        radius: "5",
     });
 
     const [filter, setFilter] = useState({
         forChildren: "",
         restriction: ""
     })
+
 
     function handleParamChange(event) {
         setParamValue({...paramValue, [event.target.name]: event.target.value});
@@ -42,8 +26,20 @@ const SearchBar = ({handleSearchButton, setCardData}) => {
     }
 
     const createParams = () => {
-        const location = paramValue.postalCode.length ? "%26plz=" + paramValue.postalCode : "%26ort=" + paramValue.city;
-        return location + "%26distanz=" + paramValue.radius + "%26family=" + paramValue.lastName
+        let urlParam = "";
+        const searchTermParts = paramValue.searchTerm.split(" ")
+        let lastName = ""
+        let postalCode = ""
+        searchTermParts.forEach((p) => {
+            if (parseInt(p).toString().length === 5) {
+                postalCode = p.toString();
+            } else {
+                lastName = p;
+            }
+        })
+        urlParam = postalCode ? urlParam + "%26plz=" + postalCode : urlParam;
+        urlParam = lastName ? urlParam + "%26family=" + lastName : urlParam;
+        return urlParam + "%26distanz=" + paramValue.radius
     }
 
     function handleSubmit(event) {
@@ -51,81 +47,33 @@ const SearchBar = ({handleSearchButton, setCardData}) => {
         handleSearchButton(createParams());
     }
 
-    function handleReset(event) {
-        event.preventDefault();
-        setParamValue({
-            city: "",
-            postalCode: "",
-            radius: "5km",
-            lastName: "",
-        })
-        setFilter({
-            forChildren: "",
-            restriction: ""
-        })
-        setCardData(
-            []
-        )
-    }
-
     return (
-        <Form>
-            <CityField>
-                <InputWrap>
-                    <FormLabel>Ort</FormLabel>
-                    <FormInput name='city' value={paramValue.city} onChange={handleParamChange} type='text'/>
-                </InputWrap>
-            </CityField>
-
-            <PostalField>
-                <InputWrap>
-                    <FormLabel>Plz</FormLabel>
-                    <FormInput name='postalCode' value={paramValue.postalCode} onChange={handleParamChange}
-                               type='text'/>
-                </InputWrap>
-            </PostalField>
-            <RadiusField>
-                <InputWrap>
-                    <FormLabel>Umkreis</FormLabel>
-                    <DropdownRadius name='radius' value={paramValue.radius} onChange={handleParamChange}>
-                        <option value="5km">5km</option>
-                        <option value="10km">10km</option>
-                        <option value="25km">25km</option>
-                        <option value="50km">50km</option>
-                        <option value="100km">100km</option>
-                    </DropdownRadius>
-                </InputWrap>
-            </RadiusField>
-            <NameField>
-                <InputWrap>
-                    <FormLabel>Name</FormLabel>
-                    <FormInput name='lastName' value={paramValue.lastName} onChange={handleParamChange} type='text'/>
-                </InputWrap>
-            </NameField>
-            <GroupField>
-                <InputWrap>
-                    <FormLabel>Patientengruppe</FormLabel>
-                    <DropdownGroup name='forChildren' value={filter.forChildren} onChange={handleFilterChange}>
-                        <option value=""/>
-                        <option value="1">Erwachsene</option>
-                        <option value="2">Kinder und Jugendliche</option>
-                    </DropdownGroup>
-                </InputWrap>
-            </GroupField>
-            <BarrierField>
-                <BarrierWrap>
-                    <FormLabel>Barrierefreier Zugang?</FormLabel>
-                    <BarrierCheck type="checkbox" name='restriction' value={filter.restriction}
-                                  onChange={handleFilterChange}/>
-                </BarrierWrap>
-            </BarrierField>
-            <ResetButtonField>
-                <ResetButton onClick={handleReset} type='reset'>Suche zurücksetzen</ResetButton>
-            </ResetButtonField>
-            <SubmitButtonField>
-                <SearchButton onClick={handleSubmit} type='submit'>Suchen</SearchButton>
-            </SubmitButtonField>
-        </Form>
+        <div class="container">
+            <Form>
+                <div class="element-container">
+                    <InputWrap class="control">
+                        <input class="input" name='searchTerm' placeholder='PLZ und/oder Name des Therapeuten'
+                               value={paramValue.searchTerm} onChange={handleParamChange}
+                               type='text'
+                        />
+                    </InputWrap>
+                </div>
+                <SelectAndButtonWrapper>
+                    <InputWrap class="control">
+                        <div class="select">
+                            <select name='radius' value={paramValue.radius} onChange={handleParamChange}>
+                                <option value="5">5km</option>
+                                <option value="10">10km</option>
+                                <option value="25">25km</option>
+                                <option value="50">50km</option>
+                                <option value="100">100km</option>
+                            </select>
+                        </div>
+                    </InputWrap>
+                    <button class="button" onClick={handleSubmit} type='submit'>Suchen</button>
+                </SelectAndButtonWrapper>
+            </Form>
+        </div>
     );
 }
 

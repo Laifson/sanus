@@ -1,37 +1,21 @@
 import * as React from 'react';
-import {Nav, NavLink, NavMenu, GridMenu, UserInfoButton} from './NavBarTopElements'
+import {Container, GridMenu, UserInfoButton, SanusLogo, SanusLogoHide} from './NavBarTopElements'
 import {withTheme} from '../styles/ThemeProvider'
-import styled from "styled-components";
 
 function NavBarTop(props) {
-    console.log(props)
+
     const position = props.scrollPosition
+    const showLogo = position <= 0 ? <SanusLogo/> : <SanusLogoHide/>;
+
+
+
     return (
-        <Container position>
-            <Nav>
+            <Container>
                 <GridMenu to="/profile">grid_view</GridMenu>
-                <NavMenu>
-                    <NavLink to="/about" activeStyle>
-                        Infos
-                    </NavLink>
-                    <NavLink to="/finder" activeStyle>
-                        Suchen
-                    </NavLink>
-                    <NavLink to="/list" activeStyle>
-                        Übersicht
-                    </NavLink>
-                    <NavLink to="/board" activeStyle>
-                        Board
-                    </NavLink>
-                </NavMenu>
+                {showLogo}
                 <UserInfoButton to="/profile">person</UserInfoButton>
-            </Nav>
-        </Container>
+            </Container>
     );
 }
 
 export default withTheme(NavBarTop);
-
-const Container = withTheme(styled.div`
-  background: ${props => props.scrollPosition > 0 ? '#000' : '#000'};
-`)

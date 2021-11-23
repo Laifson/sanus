@@ -21,17 +21,22 @@ public class TherapistController {
         return therapistService.getTherapists();
     }
 
-//    @PostMapping
-//    public Therapist addTherapist(@RequestBody Therapist therapist) {
-//        return therapistService.addTherapist(therapist);
-//    }
+    @GetMapping("{id}")
+    public Therapist getTherapist(@PathVariable String id) {
+        return therapistService.getTherapist(id);
+    }
 
     @PostMapping
     public Iterable<Therapist> addAllTherapists(@RequestBody Iterable<Therapist> therapists) {
         return therapistService.addAllTherapists(therapists);
     }
 
-    @PutMapping
+    @PostMapping("/one")
+    public Therapist addOneTherapist(@RequestBody Therapist therapist) {
+        return therapistService.addOneTherapist(therapist);
+    }
+
+    @PutMapping("{id}")
     public Therapist updateTherapist(@PathVariable String id, @RequestBody Therapist therapist) {
         if(!id.equals(therapist.getId())){
             throw new IllegalArgumentException("Could not update element! Path id does not match with element id in request body!");
@@ -44,4 +49,5 @@ public class TherapistController {
     public void deleteTherapist(@PathVariable String id) {
         therapistService.deleteTherapist(id);
     }
+
 }

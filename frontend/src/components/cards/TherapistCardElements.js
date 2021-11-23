@@ -5,35 +5,37 @@ export const Container = styled.div`
   grid-template-rows: 4rem auto 4rem;
   column-gap: 2rem;
   row-gap: 2rem;
-  border: 2px solid #363636;
-  background: linear-gradient(25deg,#CFBAF0,#A3C4F3);
-  border-radius: 12px;
-  box-shadow: 0 0 24px -16px #000;
+  background: #363636;
+  border-radius: 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 `
 
 export const CardHeader = styled.div`
   display: grid;
-  
 `
 
 export const Divider = styled.hr`
-  border: 2px solid #363636;
+  border: 2px solid #fff;
   border-radius: 5px;
 `;
 
+export const CardExpander = styled.section`
+  color: #fff;
+  font-family: Material Icons Round, sans-serif;
+  font-size: 2rem;
+`
+
 export const TherapistsName = styled.section`
-  color: #363636;
+  color: #fff;
   padding: 0.5em;
-  font-size: 1.5em;
+  font-size: 1.4em;
   grid-row: 1;
 `
 
-export const TherapistGender = styled.section`
-  color: #363636;
-  font-family: Material Icons Round, sans-serif;
-  font-size: 2rem;
-  padding-top: 0.5rem;
-  grid-row: 1;
-  
+export const CardBody = styled.div`
+  display: grid;
+  font-size: 1.2em;
+  color: #fff;
 `
+
 

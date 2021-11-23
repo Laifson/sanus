@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class TherapistService {
@@ -26,16 +27,25 @@ public class TherapistService {
         return kbvApiMapper.mapToTherapist(therapistApiService.filterEntries(params));
     }
 
-    public Therapist addTherapist(Therapist therapist) {
-        return therapistRepo.save(therapist);
-    }
-
     public Iterable<Therapist> addAllTherapists(Iterable<Therapist> therapistList) {
         return therapistRepo.saveAll(therapistList);
     }
 
+    public Therapist addOneTherapist(Therapist therapist) {
+        return therapistRepo.save(therapist);
+    }
+
     public List<Therapist> getTherapists() {
         return therapistRepo.findAll();
+    }
+
+    public Therapist getTherapist(String id) {
+        Optional<Therapist> optionalTherapist = therapistRepo.findById(id);
+        if (optionalTherapist.isPresent()) {
+            return optionalTherapist.get();
+        } else {
+            throw new NoSuchElementException("Therapist with id not found: " + id);
+        }
     }
 
     public Therapist updateTherapist(Therapist therapist) {
@@ -49,6 +59,5 @@ public class TherapistService {
     public void deleteTherapist(String id) {
         therapistRepo.deleteById(id);
     }
-
 
 }

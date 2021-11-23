@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { withRouter } from 'react-router-dom';
 import {
     Nav,
     IconList,
@@ -17,8 +18,9 @@ import {
 
 export default function NavBarBottom() {
     return (
+
         <Nav>
-            <IconHome to="/info">
+            <IconHome to="/">
                 <IconButtonHome>home</IconButtonHome>
                 <IconButtonHomeName>Home</IconButtonHomeName>
             </IconHome>
@@ -26,7 +28,7 @@ export default function NavBarBottom() {
             <IconButtonList>inventory</IconButtonList>
             <IconButtonListName>Übersicht</IconButtonListName>
             </IconList>
-            <IconBoard to="/">
+            <IconBoard to="/board">
             <IconButtonBoard>view_kanban</IconButtonBoard>
             <IconButtonBoardName>Board</IconButtonBoardName>
             </IconBoard>
