@@ -14,8 +14,20 @@ import {
     CardBox,
 } from "./TherapistCardStyles";
 import useTherapists from "../../hooks/useTherapists";
+import {useEffect, useRef, useState} from "react";
 
 export default function TherapistCardNew({therapist}) {
+    const [expanded, setExpanded] = useState(false);
+    const [accodionHeight, setAccodionHeight] = useState(0);
+    const ref = useRef(null);
+
+    const open = () => setExpanded(!expanded);
+
+    useEffect(() => {
+        const getHeight = ref.current.scrollHeight;
+        setAccodionHeight(getHeight);
+    }, [expanded]);
+
     const {removeTherapist} = useTherapists();
 
     function startDrag(event, therapist) {
@@ -43,12 +55,21 @@ export default function TherapistCardNew({therapist}) {
                 <CardTextWrapper>
                     <CardTextDate>vor {days} {days > 1 ? 'Tagen' : 'Tag'} hinzugefügt</CardTextDate>
                     <CardTextTitle>{therapist.title} {therapist.firstName} {therapist.lastName} {gender}</CardTextTitle>
-                    <CardTextBody>
+                    <CardTextBody onClick={open}
+                                  className={expanded ? "show" : ""}
+                                  setHeight={accodionHeight}
+                                  ref={ref}
+                    >
                         {therapist.street}
                         <br/>
                         {therapist.postalCode}, {therapist.city}
                         <br/>
                         {therapist.phone}
+                        <div className="accodion" ref={ref}>
+                            {therapist.email}
+                            {therapist.website}
+                            {therapist.languages}
+                        </div>
                     </CardTextBody>
                 </CardTextWrapper>
                 <CardStatWrapper>
@@ -56,7 +77,7 @@ export default function TherapistCardNew({therapist}) {
                         <CheckedButton>task_alt</CheckedButton>
                     </CardStats>
                     <CardStats>
-                        <ExpandButton href="#">expand_circle_down</ExpandButton>
+                        <ExpandButton>expand_circle_down</ExpandButton>
                     </CardStats>
                     <CardStats>
                         {removeTherapist &&

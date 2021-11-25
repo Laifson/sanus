@@ -1,115 +1,129 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  min-height: 692px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 0;
-  overflow: hidden;
-  background: linear-gradient(25deg,#CFBAF0,#A3C4F3);
-`;
+  box-sizing: border-box;
+  padding-bottom: 1rem;
+  margin: 0 auto 1rem auto;
 
-export const FormWrap = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @media screen and (max-width: 400px) {
-    height: 80%;
+  @media screen and (min-width: 768px) {
+    margin-top: 5rem;
   }
-`;
-
-export const Icon = styled(Link)`
-  margin-left: 32px;
-  margin-top: 32px;
-  text-decoration: none;
-  color: #131313;
-  font-weight: 700;
-  font-size: 2rem;
-
-  @media screen and (max-width: 480px) {
-    margin-left: 16px;
-    margin-top: 8px;
-  }
-`;
-
-export const FormContent = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @media screen and (max-width: 480px) {
-    padding: 10px;
-  }
-`;
+`
 
 export const Form = styled.form`
   max-width: 400px;
-  height: auto;
-  width: 100%;
-  z-index: 1;
-  display: grid;
-  margin: 0 auto;
-  padding: 80px 32px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, .2);
+  border-radius: 1rem;
+  padding-bottom: 1rem;
 
-  @media screen and (max-width: 400px) {
-    padding: 32px 32px;
+  h5 {
+    padding: 1rem;
+    text-align: center;
   }
-`;
 
-export const FormH1 = styled.h1`
-  margin-bottom: 40px;
-  color: #131313;
-  font-size: 1.5rem;
-  font-weight: 400;
-  text-align: center;
-`;
-
-export const FormLabel = styled.label`
-  margin-bottom: 8px;
-  font-size: 1rem;
-  color: #131313;
-`;
-
-export const FormInput = styled.input`
-  padding: 16px 16px;
-  margin-bottom: 32px;
-  border: none;
-  border-radius: 4px;
-`;
-
-export const FormButton = styled.button`
-  background: #fff;
-  padding: 1rem 0;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 4px;
-  color: #131313;
-  font-size: 1rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgba(0,0,0,.6);
-    color: white;
-    transition: background-color .5s, color .5s;
-  }
-`;
-
-export const Text = styled.span`
-  text-align: center;
-  margin-top: 20px;
-  color: #131313;
-  font-size: 1rem;
-  cursor: pointer;
-
-  &:hover {
-    color: white;
+  label {
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
     transition: all ease .3s;
+    padding-bottom: .5rem;
+    
+    :hover {
+      color: #A3C4F3;
+    }
   }
-`;
+
+  @media screen and (min-width: 768px) {
+
+  }
+`
+
+export const InputWrap = styled.div`
+  display: inline-flex;
+  align-items: center;
+`
+
+export const InputContainer = styled.div`
+  display: flex;
+  height: 2.5rem;
+  align-items: center;
+  margin: 0.5rem;
+
+  .input {
+    text-align: center;
+  }
+  
+  .input:first-child {
+    margin-top: -1rem;
+  }
+`
+
+export const ButtonWrapper = styled.div`
+  height: 2.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  .button {
+    width: 10rem;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`
+
+export const IconWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 2rem;
+  margin: 1rem auto 1rem auto;
+  fill: #363636;
+  padding-bottom: 1rem;
+
+`
+
+export const FacebookLogo = styled.div`
+  cursor: pointer;
+  transition: all ease .3s;
+  
+    :hover {
+      fill: #A3C4F3;
+    }
+  
+    :active {
+      fill: #fff;
+    }
+`
+
+export const GoogleLogo = styled.div`
+  cursor: pointer;
+  transition: all ease .3s;
+
+  :hover {
+    fill: #A3C4F3;
+  }
+
+  :active {
+    fill: #fff;
+  }
+`
+
+export const GithubLogo = styled.div`
+  cursor: pointer;
+  transition: all ease .3s;
+
+  :hover {
+    fill: #A3C4F3;
+  }
+
+  :active {
+    fill: #fff;
+  }
+`
+

@@ -1,27 +1,21 @@
 import React from "react";
-import styled from "styled-components/macro";
 import BoardList from "./BoardList";
 import useTherapists from "../../hooks/useTherapists";
+import { Container } from "./BoardElements";
 
-export default function Board({handleChangeStatus, handleDelete}) {
-const { therapists } = useTherapists()
+export default function Board() {
+    const {therapists, handleChangeStatus} = useTherapists()
     console.log(therapists)
     return (
-            <Container>
-                <h1>HALLO</h1>
-                               <>
-                                   <BoardList therapists={therapists} statusToShow="OPEN"
-                                              handleChangeStatus={handleChangeStatus} handleDelete={handleDelete}/>
-                                   <BoardList therapists={therapists} statusToShow="ACTIVE"
-                                              handleChangeStatus={handleChangeStatus} handleDelete={handleDelete}/>
-                                   <BoardList therapists={therapists} statusToShow="OCCUPIED"
-                                              handleChangeStatus={handleChangeStatus} handleDelete={handleDelete}/>
-                               </>
-            </Container>
+        <Container>
+            <BoardList columnHeader="noch offen" therapists={therapists} statusToShow="OPEN"
+                       handleChangeStatus={handleChangeStatus}/>
+            <BoardList columnHeader="Warteliste" therapists={therapists} statusToShow="WAITLIST"
+                       handleChangeStatus={handleChangeStatus}/>
+            <BoardList columnHeader="Termin bekommen" therapists={therapists} statusToShow="ACTIVE"
+                       handleChangeStatus={handleChangeStatus}/>
+            <BoardList columnHeader="aktuell keine Kapazität" therapists={therapists} statusToShow="OCCUPIED"
+                       handleChangeStatus={handleChangeStatus}/>
+        </Container>
     )
 }
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-`

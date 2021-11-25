@@ -189,7 +189,7 @@ export const IconSearch = styled(Link)`
 `
 
 export const Nav = styled.div`
-  width: 30vw;
+  width: 35rem;
   display: grid;
   position: fixed;
   grid-template-rows: auto;

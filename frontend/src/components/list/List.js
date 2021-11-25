@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import TherapistCard from "../cards/TherapistCardNew";
 import {
+    Container,
     TopBar,
     CardContainer,
     InputWrap,
@@ -22,6 +23,7 @@ export default function List() {
     }
 
     return (
+        <Container>
         <div class="container">
             <TopBar>
                 <div class="element-container">
@@ -48,5 +50,6 @@ export default function List() {
                 {filteredTherapists.map(therapist => <TherapistCard key={therapist.id} therapist={therapist}/>)}
             </CardContainer>
         </div>
+        </Container>
     )
 }

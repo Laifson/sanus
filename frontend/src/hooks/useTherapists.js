@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import {
     deleteTherapist,
     getSavedTherapists,
@@ -7,24 +7,16 @@ import {
     searchCardData,
     setNewStatus
 } from '../service/kvb-api-service'
+import { AuthContext } from '../context/AuthProvider'
 
 export default function useTherapists() {
     const [therapists, setTherapists] = useState([]);
     const [cardData, setCardData] = useState([]);
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        getTherapists()
-    }, [])
-
-    const getTherapists = () => {
-        getSavedTherapists()
-            .then(setTherapists)
-            .catch(error => console.error(error))
-    }
+    const { token } = useContext(AuthContext);
 
     const removeTherapist = id => {
-        deleteTherapist(id).then(() =>
+        deleteTherapist(id, token).then(() =>
             setTherapists(therapists.filter(therapist => therapist.id !== id))
         )
     }
@@ -32,20 +24,20 @@ export default function useTherapists() {
     const handleSearchButton = (params) => {
         setLoading(true)
         setCardData([])
-        searchCardData(params)
+        searchCardData(params, token)
             .then(setLoading(false))
             .then(setCardData)
             .catch(error => console.error(error));
     }
 
     const handleSaveAll = () => {
-        saveAllSearchedCards(cardData).then(addedTherapists =>
+        saveAllSearchedCards(cardData, token).then(addedTherapists =>
             setTherapists([...therapists, addedTherapists]))
             .catch(error => console.error(error))
     }
 
     const saveTherapist = (therapist) => {
-        saveOneSearchedCard(therapist).then(addedTherapist =>
+        saveOneSearchedCard(therapist, token).then(addedTherapist =>
             setTherapists([...therapists, addedTherapist]))
             .catch(error => console.error(error))
     }
@@ -53,8 +45,15 @@ export default function useTherapists() {
 
     const handleChangeStatus = (therapist, statusToSet) => {
         therapist.status = statusToSet
-        setNewStatus(therapist).then(() => getSavedTherapists())
+        setNewStatus(therapist).then(() => getSavedTherapists(token))
     }
+
+    useEffect(() => {
+        token &&
+        getSavedTherapists(token)
+            .then(therapists => setTherapists(therapists))
+            .catch(error => console.error(error))
+    }, [token])
 
     return {
         cardData,
@@ -65,7 +64,6 @@ export default function useTherapists() {
         saveTherapist,
         therapists,
         setTherapists,
-        getTherapists,
         removeTherapist,
         handleChangeStatus,
     }

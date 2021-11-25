@@ -13,7 +13,7 @@ export const CardWrapper = styled.div`
   grid-template-areas: "text" "stats";
   border-radius: 18px;
   background: rgba(0, 0, 0, .9);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
   text-align: center;
 `;
 
@@ -59,6 +59,14 @@ export const CardTextBody = styled.p`
   font-weight: 300;
   padding-top: 4px;
   line-height: 1.5;
+
+  .accodion {
+    padding: 10px 15px 15px; /* changed */
+  }
+
+  &.show {
+    height: ${({ setHeight }) => setHeight}px;
+  }
 `;
 
 export const CardStatWrapper = styled.div`
@@ -69,8 +77,7 @@ export const CardStatWrapper = styled.div`
 
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  //background: #A3C4F3;
-  background: ${therapist => therapist.forChildren === 'true' ? '#CFBAF0' : '#A3C4F3'};
+  background: #A3C4F3;
 `;
 
 export const CardStats = styled.div`

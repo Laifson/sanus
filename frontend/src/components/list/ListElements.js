@@ -1,4 +1,8 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
+
+export const Container = styled.div`
+  margin-bottom: 7rem;
+`
 
 export const TopBar = styled.div`
   max-width: 800px;
@@ -30,12 +34,6 @@ export const LabelAndButtonWrapper = styled.div`
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
   }
-`
-
-export const LabelSortDropdown = styled.label`
-  font-size: 1rem;
-  color: #363636;
-  padding: 0.5rem;
 `
 
 export const CardContainer = styled.div`

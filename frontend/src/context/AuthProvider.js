@@ -1,19 +1,19 @@
 import {createContext, useState} from 'react'
 import axios from 'axios'
-import {useHistory} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext({})
 
 export default function AuthProvider({children}) {
     const [token, setToken] = useState()
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const login = credentials => {
         axios
             .post('/auth/login', credentials)
             .then(res => res.data)
             .then(setToken)
-            .then(() => history.push('/'))
+            .then(() => navigate('/'))
             .catch(error => console.error(error.message))
     }
 
@@ -21,7 +21,7 @@ export default function AuthProvider({children}) {
         axios.post("/auth/github/login", {code})
             .then(res => res.data)
             .then(setToken)
-            .then(() => history.push('/'))
+            .then(() => navigate('/'))
             .catch(error => console.error(error.message))
     }
 

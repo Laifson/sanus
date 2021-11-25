@@ -32,6 +32,9 @@ export const ButtonGrid = styled.div`
   margin-top: 2rem;
   width: 22rem;
   height: 22rem;
+  //border: 2px solid #363636;
+  border-radius: 3rem;
+  background-color: rgba(0,0,0,.1);
   
   button {
     border: none !important;
@@ -58,7 +61,7 @@ export const ButtonGrid = styled.div`
     
     :hover {
       background-color: rgba(0, 0, 0, .3);
-      color: #fff;
+      color: #A3C4F3;
     }
     
     :active {

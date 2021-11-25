@@ -1,50 +1,40 @@
 import axios from "axios";
 
-export const searchCardData = (params) => {
-    return axios.get('/api/search/?params=' + params)
-        .then(response => response.data)
-}
-
-export const getSavedTherapists = () => {
-    return axios.get('/api/therapist')
-        .then(response => response.data)
-}
-
-export const saveAllSearchedCards = (cardData) => {
-    return axios.post('/api/therapist', cardData)
-        .then(response => response.data)
-}
-
-export const saveOneSearchedCard = (therapist) => {
-    const newTherapist ={
-        id: therapist.id,
-        title: therapist.title,
-        firstName: therapist.firstName,
-        lastName: therapist.lastName,
-        gender: therapist.gender,
-        phone: therapist.phone,
-        email: therapist.email,
-        website: therapist.website,
-        street: therapist.street,
-        postalCode: therapist.postalCode,
-        city: therapist.city,
-        languages: therapist.languages,
-        forChildren: therapist.forChildren,
-        accessibility: therapist.accessibility,
-        status: therapist.status,
-        dateAdded: therapist.dateAdded,
+const getHeader = (token) => {
+    return {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
     }
-    return axios.post('/api/therapist/one', newTherapist)
+}
+
+export const searchCardData = (params, token) => {
+    return axios.get('/api/search/?params=' + params, getHeader(token))
         .then(response => response.data)
 }
 
-export const deleteTherapist = (id) => {
-    return axios.delete(`/api/therapist/${id}`)
+export const getSavedTherapists = (token) => {
+    return axios.get('/api/therapist', getHeader(token))
+        .then(response => response.data)
 }
 
-export const setNewStatus = (therapist) => {
+export const saveAllSearchedCards = (cardData, token) => {
+    return axios.post('/api/therapist', cardData, getHeader(token))
+        .then(response => response.data)
+}
+
+export const saveOneSearchedCard = (therapist, token) => {
+    return axios.post('/api/therapist/one', therapist, getHeader(token))
+        .then(response => response.data)
+}
+
+export const deleteTherapist = (id, token) => {
+    return axios.delete(`/api/therapist/${id}`, getHeader(token))
+}
+
+export const setNewStatus = (therapist, token) => {
     console.log("Next Status", therapist)
-    return axios.put(`/api/therapist/${therapist.id}`, therapist)
+    return axios.put(`/api/therapist/${therapist.id}`, therapist, getHeader(token))
         .then(result => result.data)
         .catch(error => console.error(error))
 }

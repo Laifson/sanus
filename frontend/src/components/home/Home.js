@@ -7,8 +7,11 @@ import {
 } from "./HomeElements";
 import useTherapists from "../../hooks/useTherapists";
 import {useNavigate} from "react-router-dom";
+import LoginPage from "../login/LoginPage";
 
 export default function Home() {
+    const { userName } = LoginPage();
+    console.log(userName)
 
     let navigate = useNavigate();
 
@@ -18,7 +21,7 @@ export default function Home() {
     dayTime = dayTime.getHours();
     let greeting = "";
 
-    const userName = "Carmen";
+    const username = '';
 
     if (dayTime >= 1 && dayTime < 11) {
         greeting = "Guten Morgen";
@@ -31,7 +34,7 @@ export default function Home() {
 
     return (
         <Container class="container">
-            {greeting} {userName}
+            {greeting} {username}
             <SubContainer class="element-container">
                 Du verwaltest derzeit {therapists.length} Einträge
             </SubContainer>

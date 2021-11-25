@@ -1,9 +1,7 @@
 import * as React from "react";
-import NavBarTop from "./components/navbar/NavBarTop";
 import {
-    BrowserRouter,
     Routes,
-    Route
+    Route, useLocation
 } from "react-router-dom";
 import Home from "./components/home/Home";
 import About from "./components/pages/About";
@@ -12,32 +10,61 @@ import List from "./components/list/List";
 import Board from "./components/board/Board"
 import Profile from "./components/pages/Profile"
 import LoginPage from "./components/login/LoginPage";
-import NavBarBottom from "./components/navbar/NavBarBottom";
+import NavBarTop from "./components/navbars/NavBarTop";
+import NavBarBottom from "./components/navbars/NavBarBottom";
 import GlobalStyle from "./components/styles/GlobalStyle";
 import {ContentDiv, NavBarBottomWrapper} from "./AppElements";
+import PrivateRoute from "./routing/PrivateRoute";
+import GithubRedirect from "./routing/GitHubRedirect";
 
 
 function App() {
+    const {pathname} = useLocation();
 
     return (
-        <BrowserRouter>
+        <>
             <GlobalStyle/>
-            <NavBarTop/>
+            {(pathname !== '/login') && <NavBarTop/>}
             <NavBarBottomWrapper>
-                <NavBarBottom/>
+                {(pathname !== '/login') && <NavBarBottom/>}
             </NavBarBottomWrapper>
             <ContentDiv>
                 <Routes>
-                    <Route path='/' element={<Home/>}/>
-                    <Route path="/about" element={<About/>}/>
-                    <Route path='/finder/*' element={<Finder/>}/>
-                    <Route path='/list' element={<List/>}/>
-                    <Route path='/board' element={<Board/>}/>
-                    <Route path='/profile' element={<Profile/>}/>
+                    <Route path='/' element={
+                        <PrivateRoute>
+                            <Home/>
+                        </PrivateRoute>
+                    }/>
+                    <Route path='/about' element={
+                        <PrivateRoute>
+                            <About/>
+                        </PrivateRoute>
+                    }/>
+                    <Route path='/finder/*' element={
+                        <PrivateRoute>
+                            <Finder/>
+                        </PrivateRoute>
+                    }/>
+                    <Route path='/list' element={
+                        <PrivateRoute>
+                            <List/>
+                        </PrivateRoute>
+                    }/>
+                    <Route path='/board' element={
+                        <PrivateRoute>
+                            <Board/>
+                        </PrivateRoute>
+                    }/>
+                    <Route path='/profile' element={
+                        <PrivateRoute>
+                            <Profile/>
+                        </PrivateRoute>
+                    }/>
+                    <Route path='/oauth/github/redirect' element={<GithubRedirect/>}/>
                     <Route path='/login' element={<LoginPage/>}/>
                 </Routes>
             </ContentDiv>
-        </BrowserRouter>
+        </>
     )
 }
 

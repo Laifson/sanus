@@ -57,6 +57,16 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .label {
+    user-select: none;
+    font-size: 0.9rem;
+    font-weight: 400,
+    letter-spacing: 0.05rem,
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.6),
+    display: inline-flex;
+    margin-bottom: 0.5em;
+  }
+  
   .control {
     font-size: 0.9rem;
     text-align: inherit;

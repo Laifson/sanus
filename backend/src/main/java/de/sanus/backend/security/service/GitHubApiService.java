@@ -18,10 +18,10 @@ public class GitHubApiService {
 
     RestTemplate restTemplate;
 
-    @Value("${neuefische.todo.client.id}")
+    @Value("${sanus.client.id}")
     private String clientId;
 
-    @Value("${neuefische.todo.github.secret}")
+    @Value("${sanus.github.secret}")
     private String gitHubSecret;
 
     private static final String GIT_HUB_URL = "https://github.com/";
