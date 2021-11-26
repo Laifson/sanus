@@ -232,6 +232,28 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
   }
 
+
+  /* Kanban
+  ––––––––––––––––––––––––––––––––– */
+
+  .e-kanban .e-kanban-table {
+    font-family: inherit;
+    background: none;
+  }
+
+  .e-kanban .e-kanban-header .e-header-cells {
+    background: none;
+  }
+
+  .e-kanban .e-kanban-header .e-header-cells .e-header-wrap .e-header-title {
+    color: red;
+  }
+
+  .e-kanban .e-kanban-header .e-header-cells .e-header-text {
+    font-size: 1.5rem;
+    color: red;
+  }
+  
 `
 
 

@@ -5,7 +5,7 @@ import {
     SelectAndButtonWrapper,
 } from './SearchbarElements';
 
-const SearchBar = ({handleSearchButton, setCardData}) => {
+const SearchBar = ({handleSearchButton, setCardData, setAdded}) => {
     const [paramValue, setParamValue] = useState({
         searchTerm: "",
         radius: "5",
@@ -44,6 +44,7 @@ const SearchBar = ({handleSearchButton, setCardData}) => {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setAdded(false);
         handleSearchButton(createParams());
     }
 

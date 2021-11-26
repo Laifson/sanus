@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 export const CardBox = styled.div`
   flex: 0 0 auto;
@@ -8,7 +8,7 @@ export const CardBox = styled.div`
 export const CardWrapper = styled.div`
   display: grid;
   position: relative;
-  grid-template-columns: 300px;
+  grid-template-columns: 275px;
   grid-template-rows: 100% 55px;
   grid-template-areas: "text" "stats";
   border-radius: 18px;
@@ -33,7 +33,7 @@ export const CardTextTitle = styled.h2`
   min-width: 0;
   line-height: 1;
   margin: 0;
-  background: linear-gradient(25deg,#CFBAF0,#A3C4F3);
+  background: linear-gradient(25deg, #CFBAF0, #A3C4F3);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -46,7 +46,7 @@ export const TherapistGender = styled.span`
   min-width: 0;
   line-height: 1;
   margin: 0;
-  background: linear-gradient(25deg,#CFBAF0,#A3C4F3);
+  background: linear-gradient(25deg, #CFBAF0, #A3C4F3);
   -webkit-background-clip: text;
   color: transparent;
   padding-top: 2px;
@@ -65,9 +65,14 @@ export const CardTextBody = styled.p`
   }
 
   &.show {
-    height: ${({ setHeight }) => setHeight}px;
+    height: ${({setHeight}) => setHeight}px;
   }
 `;
+
+export const PhoneNumber = styled.p`
+  font-size: 22px;
+  color: #A3C4F3;
+`
 
 export const CardStatWrapper = styled.div`
   grid-area: stats;
@@ -81,44 +86,47 @@ export const CardStatWrapper = styled.div`
 `;
 
 export const CardStats = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-color: white;
-padding: 10px;
-font-family: Material Icons Round, sans-serif;
-font-size: 2rem;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  padding: 10px;
+  font-family: Material Icons Round, sans-serif;
+  font-size: 2rem;
+  cursor: pointer;
 
 `;
 
 export const CheckedButton = styled.a`
-color: rgba(0, 0, 0, .9);
-text-decoration: none;
-transition: all ease .3s;
+  color: rgba(0, 0, 0, .9);
+  text-decoration: none;
+  transition: all ease .3s;
 
-&:hover {
-color: rgba(81, 180, 87);
-}
+  &:hover {
+    color: rgba(81, 180, 87);
+  }
 `;
 
 export const ExpandButton = styled.a`
-color: rgba(0, 0, 0, .9);
-text-decoration: none;
-transition: all ease .3s;
+  color: rgba(0, 0, 0, .9);
+  text-decoration: none;
+  transition: all ease .3s;
 
-&:hover {
-color: rgba(200, 200, 200);
-}
+  &:hover {
+    color: rgba(200, 200, 200);
+  }
 `;
 
-export const DeleteButton = styled.a`
-color: rgba(0, 0, 0, .9);
-text-decoration: none;
-transition: all ease .3s;
-
-&:hover {
-color: rgb(236, 81, 87);
-}
+export const DeleteButton = styled.button`
+  color: rgba(0, 0, 0, .9);
+  text-decoration: none;
+  transition: all ease .3s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  &:hover {
+    color: rgb(236, 81, 87);
+  }
 `;

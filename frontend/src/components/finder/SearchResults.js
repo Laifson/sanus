@@ -2,14 +2,12 @@ import React from 'react';
 import {Container, CardContainer, ResultLabel, Divider, LabelAndButtonWrapper, Spinner} from "./SearchresultsElements";
 import ResultCard from "../cards/ResultCard";
 
-export default function SearchResults({loading, cardData, setCardData, handleSaveAll, handleSave}) {
-
-    const dateTime = new Date().getTime();
+export default function SearchResults({cardData, handleSaveAll, handleSave, added, setAdded}) {
 
     const handleSaveAllButton = event => {
         event.preventDefault()
-        cardData.forEach(() => cardData.dateAdded === dateTime)
         handleSaveAll(cardData)
+        setAdded(true)
     }
 
     return (
@@ -20,9 +18,8 @@ export default function SearchResults({loading, cardData, setCardData, handleSav
             </LabelAndButtonWrapper>
             <Divider/>
             <CardContainer>
-                {loading ? <>Loading... <Spinner/></> : null}
                 {cardData.map(therapist => <ResultCard key={therapist.id} therapist={therapist}
-                                                       handleSave={handleSave}/>)}
+                                                       handleSave={handleSave} added={added} setAdded={setAdded}/>)}
             </CardContainer>
         </Container>
     );

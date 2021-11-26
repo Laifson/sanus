@@ -47,6 +47,10 @@ export const Form = styled.form`
 export const InputWrap = styled.div`
   display: inline-flex;
   align-items: center;
+  
+  input {
+    width: 20rem;
+  }
 `
 
 export const InputContainer = styled.div`

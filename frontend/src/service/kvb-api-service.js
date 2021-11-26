@@ -1,4 +1,5 @@
 import axios from "axios";
+import { trackPromise } from 'react-promise-tracker';
 
 const getHeader = (token) => {
     return {
@@ -14,8 +15,8 @@ export const searchCardData = (params, token) => {
 }
 
 export const getSavedTherapists = (token) => {
-    return axios.get('/api/therapist', getHeader(token))
-        .then(response => response.data)
+    return trackPromise(axios.get('/api/therapist', getHeader(token))
+        .then(response => response.data))
 }
 
 export const saveAllSearchedCards = (cardData, token) => {
@@ -33,7 +34,6 @@ export const deleteTherapist = (id, token) => {
 }
 
 export const setNewStatus = (therapist, token) => {
-    console.log("Next Status", therapist)
     return axios.put(`/api/therapist/${therapist.id}`, therapist, getHeader(token))
         .then(result => result.data)
         .catch(error => console.error(error))

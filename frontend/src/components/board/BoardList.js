@@ -1,9 +1,7 @@
 import styled from 'styled-components/macro'
-import useTherapists from "../../hooks/useTherapists";
-import TherapistCardNew from "../cards/TherapistCardNew";
+import TherapistCard from "../cards/TherapistCardNew";
 
-export default function BoardList({columnHeader, therapists, statusToShow, handleChangeStatus }) {
-    const { removeTherapist } = useTherapists();
+export default function BoardList({columnHeader, therapists, statusToShow, handleChangeStatus, removeTherapist }) {
 
     function onDrop(event, newStatus) {
         handleChangeStatus(JSON.parse(event.dataTransfer.getData("therapist")), newStatus)
@@ -24,7 +22,7 @@ export default function BoardList({columnHeader, therapists, statusToShow, handl
                            }>
                 <h4>{columnHeader}</h4>
                 {filteredTherapists.length > 0 ? filteredTherapists.map((therapist) => {
-                    return <TherapistCardNew therapist={therapist} key={therapist.id} handleDeleteTherapist={removeTherapist}/>
+                    return <TherapistCard therapist={therapist} key={therapist.id} handleDeleteTherapist={removeTherapist} removeTherapist={removeTherapist}/>
                 }) : <div/>}
             </TherapistListBoard>
         </div>

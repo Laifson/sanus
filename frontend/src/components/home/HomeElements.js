@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 600;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 
 
   @media screen and (min-width: 768px) {

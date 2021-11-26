@@ -16,10 +16,23 @@ import GlobalStyle from "./components/styles/GlobalStyle";
 import {ContentDiv, NavBarBottomWrapper} from "./AppElements";
 import PrivateRoute from "./routing/PrivateRoute";
 import GithubRedirect from "./routing/GitHubRedirect";
+import Kanban from "./components/kanban/Kanban";
+import "../node_modules/@syncfusion/ej2-react-kanban/styles/material.css";
+import useTherapists from "./hooks/useTherapists";
 
-
-function App() {
+function App({loading}) {
     const {pathname} = useLocation();
+    const {
+        therapists,
+        setTherapists,
+        cardData,
+        setCardData,
+        removeTherapist,
+        handleSaveAll,
+        saveTherapist,
+        handleChangeStatus,
+        handleSearchButton
+    } = useTherapists()
 
     return (
         <>
@@ -30,9 +43,13 @@ function App() {
             </NavBarBottomWrapper>
             <ContentDiv>
                 <Routes>
+                    <Route path='/oauth/github/redirect' element={<GithubRedirect/>}/>
+                    <Route path='/login' element={<LoginPage/>}/>
                     <Route path='/' element={
                         <PrivateRoute>
-                            <Home/>
+                            <Home
+                                therapists={therapists}
+                            />
                         </PrivateRoute>
                     }/>
                     <Route path='/about' element={
@@ -42,17 +59,31 @@ function App() {
                     }/>
                     <Route path='/finder/*' element={
                         <PrivateRoute>
-                            <Finder/>
+                            <Finder
+                                cardData={cardData}
+                                setCardData={setCardData}
+                                handleSearchButton={handleSearchButton}
+                                handleSaveAll={handleSaveAll}
+                                saveTherapist={saveTherapist}
+                            />
                         </PrivateRoute>
                     }/>
                     <Route path='/list' element={
                         <PrivateRoute>
-                            <List/>
+                            <List
+                                therapists={therapists}
+                                setTherapists={setTherapists}
+                                removeTherapist={removeTherapist}
+                            />
                         </PrivateRoute>
                     }/>
                     <Route path='/board' element={
                         <PrivateRoute>
-                            <Board/>
+                            <Board
+                                therapists={therapists}
+                                handleChangeStatus={handleChangeStatus}
+                                removeTherapist={removeTherapist}
+                            />
                         </PrivateRoute>
                     }/>
                     <Route path='/profile' element={
@@ -60,8 +91,11 @@ function App() {
                             <Profile/>
                         </PrivateRoute>
                     }/>
-                    <Route path='/oauth/github/redirect' element={<GithubRedirect/>}/>
-                    <Route path='/login' element={<LoginPage/>}/>
+                    <Route path='/kanban' element={
+                        <PrivateRoute>
+                            <Kanban/>
+                        </PrivateRoute>
+                    }/>
                 </Routes>
             </ContentDiv>
         </>

@@ -1,21 +1,18 @@
 import React from "react";
 import BoardList from "./BoardList";
-import useTherapists from "../../hooks/useTherapists";
 import { Container } from "./BoardElements";
 
-export default function Board() {
-    const {therapists, handleChangeStatus} = useTherapists()
-    console.log(therapists)
+export default function Board({ therapists, handleChangeStatus, removeTherapist }) {
     return (
         <Container>
             <BoardList columnHeader="noch offen" therapists={therapists} statusToShow="OPEN"
-                       handleChangeStatus={handleChangeStatus}/>
+                       handleChangeStatus={handleChangeStatus} removeTherapist={removeTherapist}/>
             <BoardList columnHeader="Warteliste" therapists={therapists} statusToShow="WAITLIST"
-                       handleChangeStatus={handleChangeStatus}/>
-            <BoardList columnHeader="Termin bekommen" therapists={therapists} statusToShow="ACTIVE"
-                       handleChangeStatus={handleChangeStatus}/>
-            <BoardList columnHeader="aktuell keine Kapazität" therapists={therapists} statusToShow="OCCUPIED"
-                       handleChangeStatus={handleChangeStatus}/>
+                       handleChangeStatus={handleChangeStatus} removeTherapist={removeTherapist}/>
+            <BoardList columnHeader="Termin anstehend" therapists={therapists} statusToShow="ACTIVE"
+                       handleChangeStatus={handleChangeStatus} removeTherapist={removeTherapist}/>
+            <BoardList columnHeader="keine Kapazität" therapists={therapists} statusToShow="OCCUPIED"
+                       handleChangeStatus={handleChangeStatus} removeTherapist={removeTherapist}/>
         </Container>
     )
 }

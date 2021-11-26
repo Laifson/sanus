@@ -75,7 +75,7 @@ export const GridMenu = styled(Link)`
   }
 `
 
-export const UserInfoButton = styled(Link)`
+export const UserInfoButton = styled.button`
   flex-grow: 1;
   color: #363636;
   cursor: pointer;
@@ -86,6 +86,8 @@ export const UserInfoButton = styled(Link)`
   align-self: center;
   justify-self: end;
   margin-right: .5rem;
+  background: none;
+  border: none;
   
   &:hover {
     color: #fff;

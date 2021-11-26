@@ -1,27 +1,13 @@
-import React from "react";
-import {
-    Container,
-    SubContainer,
-    ButtonGrid,
-    Label, Icon, InsideButtonWrapper
-} from "./HomeElements";
-import useTherapists from "../../hooks/useTherapists";
+import React, {useContext} from "react";
+import {ButtonGrid, Container, Icon, InsideButtonWrapper, Label, SubContainer} from "./HomeElements";
 import {useNavigate} from "react-router-dom";
-import LoginPage from "../login/LoginPage";
 
-export default function Home() {
-    const { userName } = LoginPage();
-    console.log(userName)
-
+export default function Home({ therapists }) {
     let navigate = useNavigate();
-
-    const {therapists} = useTherapists();
 
     let dayTime = new Date();
     dayTime = dayTime.getHours();
     let greeting = "";
-
-    const username = '';
 
     if (dayTime >= 1 && dayTime < 11) {
         greeting = "Guten Morgen";
@@ -31,10 +17,11 @@ export default function Home() {
         greeting = "Guten Abend";
     }
 
+    const localStoredUsersName = localStorage.getItem('user');
 
     return (
         <Container class="container">
-            {greeting} {username}
+            {greeting} {localStoredUsersName}
             <SubContainer class="element-container">
                 Du verwaltest derzeit {therapists.length} Einträge
             </SubContainer>

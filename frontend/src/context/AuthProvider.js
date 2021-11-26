@@ -1,14 +1,29 @@
-import {createContext, useState} from 'react'
+import {createContext, useEffect, useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext({})
 
-export default function AuthProvider({children}) {
-    const [token, setToken] = useState()
-    const navigate = useNavigate()
+const initialState = {
+    username: '',
+    password: '',
+}
 
-    const login = credentials => {
+export default function AuthProvider({children}) {
+    const [token, setToken] = useState();
+    const navigate = useNavigate()
+    const [user, setUser] = useState();
+    const [credentials, setCredentials] = useState(initialState);
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('user');
+        if (loggedInUser) {
+            setUser(loggedInUser);
+            console.log(loggedInUser)
+        }
+    }, []);
+
+    const login = () => {
         axios
             .post('/auth/login', credentials)
             .then(res => res.data)
@@ -26,7 +41,7 @@ export default function AuthProvider({children}) {
     }
 
     return (
-        <AuthContext.Provider value={{token, login, loginWithGithub}}>
+        <AuthContext.Provider value={{token, login, loginWithGithub, user, setUser, credentials, setCredentials}}>
             {children}
         </AuthContext.Provider>
     )

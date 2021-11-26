@@ -24,6 +24,10 @@ export const TopBar = styled.div`
 export const InputWrap = styled.div`
   display: inline-flex;
   align-items: center;
+  
+  input {
+    width: 17rem;
+  }
 `
 
 export const LabelAndButtonWrapper = styled.div`

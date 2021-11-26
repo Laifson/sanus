@@ -12,7 +12,6 @@ import { AuthContext } from '../context/AuthProvider'
 export default function useTherapists() {
     const [therapists, setTherapists] = useState([]);
     const [cardData, setCardData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const { token } = useContext(AuthContext);
 
     const removeTherapist = id => {
@@ -21,11 +20,10 @@ export default function useTherapists() {
         )
     }
 
+
     const handleSearchButton = (params) => {
-        setLoading(true)
         setCardData([])
         searchCardData(params, token)
-            .then(setLoading(false))
             .then(setCardData)
             .catch(error => console.error(error));
     }
@@ -57,7 +55,6 @@ export default function useTherapists() {
 
     return {
         cardData,
-        loading,
         setCardData,
         handleSearchButton,
         handleSaveAll,

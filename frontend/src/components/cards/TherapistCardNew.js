@@ -11,25 +11,10 @@ import {
     ExpandButton,
     DeleteButton,
     CheckedButton,
-    CardBox,
+    CardBox, PhoneNumber,
 } from "./TherapistCardStyles";
-import useTherapists from "../../hooks/useTherapists";
-import {useEffect, useRef, useState} from "react";
 
-export default function TherapistCardNew({therapist}) {
-    const [expanded, setExpanded] = useState(false);
-    const [accodionHeight, setAccodionHeight] = useState(0);
-    const ref = useRef(null);
-
-    const open = () => setExpanded(!expanded);
-
-    useEffect(() => {
-        const getHeight = ref.current.scrollHeight;
-        setAccodionHeight(getHeight);
-    }, [expanded]);
-
-    const {removeTherapist} = useTherapists();
-
+export default function TherapistCardNew({ therapist, removeTherapist }) {
     function startDrag(event, therapist) {
         const objectString = JSON.stringify(therapist)
         event.dataTransfer.setData("therapist", objectString)
@@ -37,7 +22,6 @@ export default function TherapistCardNew({therapist}) {
 
     const gender = therapist.gender === "female" ? (<TherapistGender>female</TherapistGender>) : (
         <TherapistGender>male</TherapistGender>);
-
 
     let date = new Date().getTime()
     let dateAdded = therapist.dateAdded
@@ -55,21 +39,12 @@ export default function TherapistCardNew({therapist}) {
                 <CardTextWrapper>
                     <CardTextDate>vor {days} {days > 1 ? 'Tagen' : 'Tag'} hinzugefügt</CardTextDate>
                     <CardTextTitle>{therapist.title} {therapist.firstName} {therapist.lastName} {gender}</CardTextTitle>
-                    <CardTextBody onClick={open}
-                                  className={expanded ? "show" : ""}
-                                  setHeight={accodionHeight}
-                                  ref={ref}
-                    >
+                    <CardTextBody>
                         {therapist.street}
                         <br/>
                         {therapist.postalCode}, {therapist.city}
                         <br/>
-                        {therapist.phone}
-                        <div className="accodion" ref={ref}>
-                            {therapist.email}
-                            {therapist.website}
-                            {therapist.languages}
-                        </div>
+                        <PhoneNumber>{therapist.phone}</PhoneNumber>
                     </CardTextBody>
                 </CardTextWrapper>
                 <CardStatWrapper>
@@ -80,8 +55,7 @@ export default function TherapistCardNew({therapist}) {
                         <ExpandButton>expand_circle_down</ExpandButton>
                     </CardStats>
                     <CardStats>
-                        {removeTherapist &&
-                        <DeleteButton onClick={() => removeTherapist(therapist.id)}>person_remove</DeleteButton>}
+                        {removeTherapist && <DeleteButton onClick={() => removeTherapist(therapist.id)}>delete</DeleteButton>}
                     </CardStats>
                 </CardStatWrapper>
             </CardWrapper>

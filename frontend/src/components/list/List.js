@@ -7,14 +7,12 @@ import {
     InputWrap,
     LabelAndButtonWrapper
 } from "./ListElements";
-import useTherapists from "../../hooks/useTherapists";
 
-export default function List() {
-    const {therapists, setTherapists} = useTherapists();
+export default function List({ therapists, setTherapists, removeTherapist }) {
     const [search, setSearch] = useState("");
 
     const filteredTherapists = therapists.filter(therapist =>
-        (therapist.firstName.toLowerCase() + therapist.lastName).toLowerCase().includes(search.toLowerCase())
+        (therapist.firstName.toLowerCase() + therapist.lastName.toLowerCase()).includes(search.toLowerCase())
     )
 
     const handleSearch = event => {
@@ -28,7 +26,7 @@ export default function List() {
             <TopBar>
                 <div class="element-container">
                     <InputWrap class="control">
-                        <input class="textarea" type="text" placeholder="Nach Namen suchen" onChange={handleSearch}
+                        <input class="input" type="text" placeholder="Nach Namen suchen" onChange={handleSearch}
                                value={search}/>
                     </InputWrap>
                 </div>
@@ -38,8 +36,8 @@ export default function List() {
                         <div class="select">
                             <select>
                                 <option value=""></option>
-                                <option value="Name" onClick={() => setTherapists(therapists.sort((a, b) => a.lastName.localeCompare(b.lastName)))}>Name</option>
-                                <option value="Date" onClick={() => setTherapists(therapists.sort((a, b) => a.dateAdded.localeCompare(b.dateAdded)))}>Datum</option>
+                                <option value="Name" onClick={null}>Name</option>
+                                <option value="Date" onClick={null}>Datum</option>
                                 <option value="Status" onClick={() => setTherapists(therapists.sort((a, b) => a.status.localeCompare(b.status)))}>Status</option>
                             </select>
                         </div>
@@ -47,7 +45,7 @@ export default function List() {
                 </LabelAndButtonWrapper>
             </TopBar>
             <CardContainer>
-                {filteredTherapists.map(therapist => <TherapistCard key={therapist.id} therapist={therapist}/>)}
+                {filteredTherapists.map(therapist => <TherapistCard key={therapist.id} therapist={therapist} removeTherapist={removeTherapist}/>)}
             </CardContainer>
         </div>
         </Container>

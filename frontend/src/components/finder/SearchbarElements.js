@@ -11,6 +11,10 @@ export const Form = styled.form`
   background-color: rgba(0, 0, 0, .2);
   border-radius: 1rem;
   
+  input {
+    width: 17rem;
+  }
+  
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }

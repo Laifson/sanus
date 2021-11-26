@@ -1,19 +1,22 @@
 import * as React from 'react';
-import {Container, GridMenu, UserInfoButton, SanusLogo, SanusLogoHide} from './NavBarTopElements'
+import {Container, GridMenu, SanusLogo, SanusLogoHide, UserInfoButton} from './NavBarTopElements'
 import {withTheme} from '../styles/ThemeProvider'
+import {useNavigate} from "react-router-dom";
 
-function NavBarTop(props) {
+function NavBarTop({ scrollPosition, setCredentials, initialState }) {
+    const navigate = useNavigate()
+    const showLogo = scrollPosition <= 0 ? <SanusLogo/> : <SanusLogoHide/>;
 
-    const position = props.scrollPosition
-    const showLogo = position <= 0 ? <SanusLogo/> : <SanusLogoHide/>;
-
-
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login')
+    };
 
     return (
             <Container>
-                <GridMenu to="/profile">grid_view</GridMenu>
+                <GridMenu to="/kanban">grid_view</GridMenu>
                 {showLogo}
-                <UserInfoButton to="/profile">person</UserInfoButton>
+                <UserInfoButton onClick={handleLogout}>exit_to_app</UserInfoButton>
             </Container>
     );
 }

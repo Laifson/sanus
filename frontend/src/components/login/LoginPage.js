@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     Container,
     Form,
@@ -13,14 +13,8 @@ import {
 import {AuthContext} from "../../context/AuthProvider";
 import SocialLogo from 'social-logos';
 
-const initialState = {
-    username: '',
-    password: '',
-}
-
-const LoginPage = () => {
-    const [credentials, setCredentials] = useState(initialState)
-    const {login} = useContext(AuthContext)
+export default function LoginPage() {
+    const { login, credentials, setCredentials, setUser } = useContext(AuthContext);
 
     /* TODO Get from backend */
     const clientId = "0e3dbdfa42eb50c3f6fb"
@@ -31,6 +25,8 @@ const LoginPage = () => {
     const handleSubmit = event => {
         event.preventDefault()
         login(credentials)
+        setUser(credentials.username)
+        localStorage.setItem('user', credentials.username)
             }
 
     const loginWithGithub = () => {
@@ -86,4 +82,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+

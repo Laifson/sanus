@@ -1,17 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
-import useTherapists from "../../hooks/useTherapists";
 
 
-export default function Finder() {
-    const {loading, cardData, setCardData, handleSearchButton, handleSaveAll, saveTherapist } = useTherapists();
+export default function Finder({cardData, setCardData, handleSearchButton, handleSaveAll, saveTherapist}) {
+    const [added, setAdded] = useState();
 
     return (
         <Container>
-            <SearchBar handleSearchButton={handleSearchButton} setCardData={setCardData}/>
-            <SearchResults loading={loading} cardData={cardData} handleSaveAll={handleSaveAll} handleSave={saveTherapist}/>
+            <SearchBar handleSearchButton={handleSearchButton} setCardData={setCardData} setAdded={setAdded}/>
+            <SearchResults cardData={cardData} handleSaveAll={handleSaveAll}
+                           handleSave={saveTherapist} added={added} setAdded={setAdded}/>
         </Container>
     )
 }
