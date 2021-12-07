@@ -238,20 +238,30 @@ const GlobalStyle = createGlobalStyle`
 
   .e-kanban .e-kanban-table {
     font-family: inherit;
-    background: none;
+    background: transparent;
   }
 
   .e-kanban .e-kanban-header .e-header-cells {
-    background: none;
+    background: transparent;
   }
 
   .e-kanban .e-kanban-header .e-header-cells .e-header-wrap .e-header-title {
-    color: red;
+    background-color: transparent;
   }
 
   .e-kanban .e-kanban-header .e-header-cells .e-header-text {
     font-size: 1.5rem;
-    color: red;
+    padding: 1rem;
+    color: #363636;
+  }
+
+  .e-kanban .e-kanban-content .e-content-row .e-content-cells .e-card-wrapper .e-card {
+    background-color: green;
+    border-radius: 5px;
+  }
+
+  .e-kanban .e-kanban-content .e-content-row .e-content-cells .e-card-wrapper .e-card .e-card-header .e-card-header-title {
+    font-size: 1.2rem;
   }
   
 `
