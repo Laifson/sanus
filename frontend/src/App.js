@@ -20,13 +20,14 @@ import Kanban from "./components/kanban/Kanban";
 import "../node_modules/@syncfusion/ej2-react-kanban/styles/material.css";
 import useTherapists from "./hooks/useTherapists";
 
-function App({loading}) {
+function App() {
     const {pathname} = useLocation();
     const {
         therapists,
         setTherapists,
         cardData,
         setCardData,
+        isLoading,
         removeTherapist,
         handleSaveAll,
         saveTherapist,
@@ -62,6 +63,7 @@ function App({loading}) {
                             <Finder
                                 cardData={cardData}
                                 setCardData={setCardData}
+                                isLoading={isLoading}
                                 handleSearchButton={handleSearchButton}
                                 handleSaveAll={handleSaveAll}
                                 saveTherapist={saveTherapist}

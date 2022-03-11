@@ -13,6 +13,7 @@ export default function useTherapists() {
     const [therapists, setTherapists] = useState([]);
     const [cardData, setCardData] = useState([]);
     const { token } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     const removeTherapist = id => {
         deleteTherapist(id, token).then(() =>
@@ -22,9 +23,11 @@ export default function useTherapists() {
 
 
     const handleSearchButton = (params) => {
+        setIsLoading(true);
         setCardData([])
         searchCardData(params, token)
             .then(setCardData)
+            .then(() => setIsLoading(false))
             .catch(error => console.error(error));
     }
 
@@ -54,6 +57,7 @@ export default function useTherapists() {
     }, [token])
 
     return {
+        isLoading,
         cardData,
         setCardData,
         handleSearchButton,

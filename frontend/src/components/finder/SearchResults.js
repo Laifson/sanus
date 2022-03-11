@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, CardContainer, ResultLabel, Divider, LabelAndButtonWrapper, Spinner} from "./SearchresultsElements";
 import ResultCard from "../cards/ResultCard";
 
-export default function SearchResults({cardData, handleSaveAll, handleSave, added, setAdded}) {
+export default function SearchResults({cardData, isLoading, handleSaveAll, handleSave, added, setAdded}) {
 
     const handleSaveAllButton = event => {
         event.preventDefault()
@@ -18,6 +18,7 @@ export default function SearchResults({cardData, handleSaveAll, handleSave, adde
             </LabelAndButtonWrapper>
             <Divider/>
             <CardContainer>
+                {isLoading ? <Spinner/> : null}
                 {cardData.map(therapist => <ResultCard key={therapist.id} therapist={therapist}
                                                        handleSave={handleSave} added={added} setAdded={setAdded}/>)}
             </CardContainer>

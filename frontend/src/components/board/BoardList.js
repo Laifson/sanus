@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import TherapistCard from "../cards/TherapistCardNew";
+import {DragDropContext} from "react-beautiful-dnd";
 
 export default function BoardList({columnHeader, therapists, statusToShow, handleChangeStatus, removeTherapist }) {
 
@@ -10,6 +11,7 @@ export default function BoardList({columnHeader, therapists, statusToShow, handl
     const filteredTherapists = therapists.filter((therapist)=> therapist.status === statusToShow)
 
     return (
+        <DragDropContext>
         <div class="container">
             <TherapistListBoard droppable
                            onDragOver={(e) => {
@@ -26,6 +28,7 @@ export default function BoardList({columnHeader, therapists, statusToShow, handl
                 }) : <div/>}
             </TherapistListBoard>
         </div>
+            </DragDropContext>
     )
 }
 

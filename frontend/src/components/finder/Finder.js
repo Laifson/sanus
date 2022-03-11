@@ -4,13 +4,13 @@ import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 
 
-export default function Finder({cardData, setCardData, handleSearchButton, handleSaveAll, saveTherapist}) {
+export default function Finder({cardData, setCardData, isLoading, handleSearchButton, handleSaveAll, saveTherapist}) {
     const [added, setAdded] = useState();
 
     return (
         <Container>
             <SearchBar handleSearchButton={handleSearchButton} setCardData={setCardData} setAdded={setAdded}/>
-            <SearchResults cardData={cardData} handleSaveAll={handleSaveAll}
+            <SearchResults cardData={cardData} isLoading={isLoading} handleSaveAll={handleSaveAll}
                            handleSave={saveTherapist} added={added} setAdded={setAdded}/>
         </Container>
     )
