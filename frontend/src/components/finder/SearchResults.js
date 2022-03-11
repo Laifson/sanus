@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, CardContainer, ResultLabel, Divider, LabelAndButtonWrapper, Spinner} from "./SearchresultsElements";
+import {Container, CardContainer, ResultLabel, Divider, LabelAndButtonWrapper, SpinnerContainer, Spinner} from "./SearchresultsElements";
 import ResultCard from "../cards/ResultCard";
 
 export default function SearchResults({cardData, isLoading, handleSaveAll, handleSave, added, setAdded}) {
@@ -18,7 +18,9 @@ export default function SearchResults({cardData, isLoading, handleSaveAll, handl
             </LabelAndButtonWrapper>
             <Divider/>
             <CardContainer>
+                <SpinnerContainer>
                 {isLoading ? <Spinner/> : null}
+                </SpinnerContainer>
                 {cardData.map(therapist => <ResultCard key={therapist.id} therapist={therapist}
                                                        handleSave={handleSave} added={added} setAdded={setAdded}/>)}
             </CardContainer>

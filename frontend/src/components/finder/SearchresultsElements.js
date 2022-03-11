@@ -31,15 +31,19 @@ export const Spinner = styled.div`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
   
-  border-top: 2px solid #363636;
-  border-right: 2px solid #363636;
-  border-bottom: 2px solid #363636;
-  border-left: 4px solid #fff;
+  border-top: 4px solid #363636;
+  border-right: 4px solid #363636;
+  border-bottom: 4px solid #363636;
+  border-left: 5px solid #fff;
   background: transparent;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
 `;
+
+export const SpinnerContainer = styled.div`
+  padding-top: 1rem;
+`
 
 export const LabelAndButtonWrapper = styled.div`
   grid-area: LabelAndButtonWrapper;
