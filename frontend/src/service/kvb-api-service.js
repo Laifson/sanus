@@ -34,6 +34,7 @@ export const deleteTherapist = (id, token) => {
 }
 
 export const setNewStatus = (therapist, token) => {
+    console.log("Next Status", therapist.status)
     return axios.put(`/api/therapist/${therapist.id}`, therapist, getHeader(token))
         .then(result => result.data)
         .catch(error => console.error(error))

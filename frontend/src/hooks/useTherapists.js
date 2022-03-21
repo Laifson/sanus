@@ -21,7 +21,6 @@ export default function useTherapists() {
         )
     }
 
-
     const handleSearchButton = (params) => {
         setIsLoading(true);
         setCardData([])
@@ -43,10 +42,11 @@ export default function useTherapists() {
             .catch(error => console.error(error))
     }
 
-
     const handleChangeStatus = (therapist, statusToSet) => {
         therapist.status = statusToSet
-        setNewStatus(therapist).then(() => getSavedTherapists(token))
+        setNewStatus(therapist, token)
+            .then(() => getSavedTherapists(token))
+            .then(therapists => setTherapists(therapists))
     }
 
     useEffect(() => {

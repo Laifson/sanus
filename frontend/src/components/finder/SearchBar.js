@@ -21,9 +21,9 @@ const SearchBar = ({handleSearchButton, setCardData, setAdded}) => {
         setParamValue({...paramValue, [event.target.name]: event.target.value});
     }
 
-    function handleFilterChange(event) {
-        setFilter({...filter, [event.target.name]: event.target.value});
-    }
+    // function handleFilterChange(event) {
+    //     setFilter({...filter, [event.target.name]: event.target.value});
+    // }
 
     const createParams = () => {
         let urlParam = "";

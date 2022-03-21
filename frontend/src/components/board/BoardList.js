@@ -24,7 +24,10 @@ export default function BoardList({columnHeader, therapists, statusToShow, handl
                            }>
                 <h4>{columnHeader}</h4>
                 {filteredTherapists.length > 0 ? filteredTherapists.map((therapist) => {
+                    if (therapist.status === statusToShow) {
                     return <TherapistCard therapist={therapist} key={therapist.id} handleDeleteTherapist={removeTherapist} removeTherapist={removeTherapist}/>
+                    }
+                    return null
                 }) : <div/>}
             </TherapistListBoard>
         </div>

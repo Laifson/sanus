@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import {ButtonGrid, Container, Icon, InsideButtonWrapper, Label, SubContainer} from "./HomeElements";
 import {useNavigate} from "react-router-dom";
 

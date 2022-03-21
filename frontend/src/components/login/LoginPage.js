@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {
     Container,
     Form,
@@ -80,6 +80,6 @@ export default function LoginPage() {
             </Form>
         </Container>
     );
-};
+}
 
 
