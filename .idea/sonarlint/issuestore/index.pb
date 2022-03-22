@@ -3,8 +3,6 @@
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 C
 frontend/.gitignore,e\2\e23a63a9f05477a70f6e75d709dbb4eae2db742d
-B
-backend/.gitignore,7\e\7e16691a9fc60084a157565ec422c8094d3df67c
 X
 (frontend/src/components/pages/Profile.js,f\9\f9078b6545fa7ac42e1662749a7030c8a22cd2ed
 ”
