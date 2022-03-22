@@ -1,0 +1,13 @@
+
+h
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+M
+java:S1135"2Complete the task associated to this TODO comment.(ïª¡’üÿÿÿÿ
+M
+java:S1135-"2Complete the task associated to this TODO comment.(¨ğ’ªúÿÿÿÿ
+M
+java:S1135>"2Complete the task associated to this TODO comment.(¨ğ’ªúÿÿÿÿ
+M
+java:S1135O"2Complete the task associated to this TODO comment.(¨ğ’ªúÿÿÿÿ
+k
+java:S11925"UDefine a constant instead of duplicating this literal " practitioner entry:" 3 times.(äŸÜÁ

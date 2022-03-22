@@ -3,13 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
+    "formik": "^2.2.9",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-bootstrap": "^2.0.2",
+    "react-country-flag": "^3.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-ionicons": "^4.2.0",
+    "react-native": "^0.66.3",
+    "react-native-elements": "^3.4.2",
+    "react-native-svg": "^12.1.1",
+    "react-promise-tracker": "^2.1.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "react-scroll": "^1.8.4",
+    "react-swipeable": "^6.2.0",
+    "social-logos": "^2.4.0",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,5 +55,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@syncfusion/ej2-react-kanban": "^19.3.55",
+    "react-router-dom": "^6.0.1"
+  },
+  "proxy": "http://localhost:8080"
 }
