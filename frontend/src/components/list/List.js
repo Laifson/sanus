@@ -15,6 +15,8 @@ export default function List({ therapists, setTherapists, removeTherapist }) {
         (therapist.firstName.toLowerCase() + therapist.lastName.toLowerCase()).includes(search.toLowerCase())
     )
 
+
+
     const handleSearch = event => {
         const newSearch = event.target.value
         setSearch(newSearch)
@@ -36,7 +38,7 @@ export default function List({ therapists, setTherapists, removeTherapist }) {
                         <div class="select">
                             <select>
                                 <option value=""></option>
-                                <option value="Name" onClick={null}>Name</option>
+                                <option value="Name" onClick={() => setTherapists(therapists.sort((a, b) => a.lastName.localeCompare(b.lastName)))}>Name</option>
                                 <option value="Date" onClick={null}>Datum</option>
                                 <option value="Status" onClick={() => setTherapists(therapists.sort((a, b) => a.status.localeCompare(b.status)))}>Status</option>
                             </select>
