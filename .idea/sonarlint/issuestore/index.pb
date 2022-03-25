@@ -1,8 +1,4 @@
 
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-C
-frontend/.gitignore,e\2\e23a63a9f05477a70f6e75d709dbb4eae2db742d
 X
 (frontend/src/components/pages/Profile.js,f\9\f9078b6545fa7ac42e1662749a7030c8a22cd2ed
 ”
@@ -153,9 +149,5 @@ Z
 *frontend/src/components/board/BoardList.js,c\d\cd5494db2b31119bba6366864d52d68734c66149
 E
 frontend/package.json,3\7\37083060967a471c011a16651e22bdc2ade41759
-H
-sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
 B
 backend/.gitignore,7\e\7e16691a9fc60084a157565ec422c8094d3df67c
-K
-.github/workflows/maven.yml,c\7\c709f6995f23dae0da365bff70068f8288fa89e0
