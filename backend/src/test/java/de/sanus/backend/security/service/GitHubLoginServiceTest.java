@@ -21,8 +21,8 @@ class GitHubLoginServiceTest {
         //GIVEN
         String code = "someCode";
 
-        when(gitHubApiService.getGitHubToken(code)).thenReturn("someAccessToken");
-        when(gitHubApiService.retrieveUserInfo("someAccessToken")).thenReturn(new GitHubUserDto("someUsername"));
+        when(gitHubApiService.retrieveGitHubToken(code)).thenReturn("someAccessToken");
+        when(gitHubApiService.retrieveUserInfo("someAccessToken")).thenReturn(new GitHubUserDto("someLogin"));
         when(jwtUtilService.createToken(new HashMap<>(), "someLogin")).thenReturn("someJwt");
 
         //WHEN
@@ -31,7 +31,7 @@ class GitHubLoginServiceTest {
         //THEN
         assertThat(jwt, Matchers.is("someJwt"));
 
-        verify(gitHubApiService).getGitHubToken(code);
+        verify(gitHubApiService).retrieveGitHubToken(code);
         verify(gitHubApiService).retrieveUserInfo("someAccessToken");
         verify(jwtUtilService).createToken(new HashMap<>(), "someLogin");
     }

@@ -4,11 +4,9 @@ import de.sanus.backend.controller.exception.GitHubAuthenticationException;
 import de.sanus.backend.security.model.GitHubAccessTokenDto;
 import de.sanus.backend.security.model.GitHubOAuthCredentialsDto;
 import de.sanus.backend.security.model.GitHubUserDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.List;
 @Service
 public class GitHubApiService {
 
-    RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Value("${sanus.client.id}")
     private String clientId;
@@ -24,15 +22,15 @@ public class GitHubApiService {
     @Value("${sanus.github.secret}")
     private String gitHubSecret;
 
-    private static final String GIT_HUB_URL = "https://github.com/";
-    private static final String GIT_HUB_API_URL = "https://api.github.com/";
+    private static final String GITHUB_CODE_URL = "https://github.com/login/oauth/access_token";
+    private static final String GITHUB_USER_URL = "https://api.github.com/user";
 
-    @Autowired
     public GitHubApiService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public String getGitHubToken(String gitHubLoginCode) {
+    @SuppressWarnings({"java:S2259"})
+    public String retrieveGitHubToken(String gitHubLoginCode) {
 
         GitHubOAuthCredentialsDto credentialsDto = GitHubOAuthCredentialsDto.builder()
                 .clientId(clientId)
@@ -43,20 +41,14 @@ public class GitHubApiService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        ResponseEntity<GitHubAccessTokenDto> response;
-        try {
-            response = restTemplate.exchange(
-                    GIT_HUB_URL + "login/oauth/access_token",
-                    HttpMethod.POST,
-                    new HttpEntity<>(credentialsDto, httpHeaders),
-                    GitHubAccessTokenDto.class);
+        ResponseEntity<GitHubAccessTokenDto> response = restTemplate.exchange(
+                GITHUB_CODE_URL,
+                HttpMethod.POST,
+                new HttpEntity<>(credentialsDto, httpHeaders),
+                GitHubAccessTokenDto.class);
 
-        } catch (RestClientException ex) {
-            throw new GitHubAuthenticationException("Error while authenticating via GitHub!", ex);
-        }
-
-        if(response.getBody() == null){
-            throw new GitHubAuthenticationException("Error while authenticating via GitHub! Returned body was null instead of containing access token.");
+        if (response.getBody() == null) {
+            throw new GitHubAuthenticationException("Error while authenticating via GitHub! Returned body was null instead of containing an access token.");
         }
 
         return response.getBody().getAccessToken();
@@ -64,22 +56,16 @@ public class GitHubApiService {
 
     public GitHubUserDto retrieveUserInfo(String gitHubToken) {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Authorization", "token " + gitHubToken);
+        httpHeaders.setBearerAuth(gitHubToken);
 
-        ResponseEntity<GitHubUserDto> response;
-        try {
-            response = restTemplate.exchange(
-                    GIT_HUB_API_URL + "user",
-                    HttpMethod.GET,
-                    new HttpEntity<>(httpHeaders),
-                    GitHubUserDto.class);
-
-        } catch (RestClientException ex) {
-            throw new GitHubAuthenticationException("Error while access GitHub user info!", ex);
-        }
+        ResponseEntity<GitHubUserDto> response = restTemplate.exchange(
+                GITHUB_USER_URL,
+                HttpMethod.GET,
+                new HttpEntity<>(httpHeaders),
+                GitHubUserDto.class);
 
         if (response.getBody() == null) {
-            throw new GitHubAuthenticationException("Error while access GitHub user info! Returned body was null instead of containing user info.");
+            throw new GitHubAuthenticationException("Error while authenticating with code via GitHub! Body is null!");
         }
 
         return response.getBody();

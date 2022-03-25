@@ -1,7 +1,6 @@
 package de.sanus.backend.security.service;
 
 import de.sanus.backend.security.model.GitHubUserDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,21 +11,19 @@ public class GitHubLoginService {
     private final GitHubApiService gitHubApiService;
     private final JWTUtilService jwtUtilService;
 
-    @Autowired
     public GitHubLoginService(GitHubApiService gitHubApiService, JWTUtilService jwtUtilService) {
         this.gitHubApiService = gitHubApiService;
         this.jwtUtilService = jwtUtilService;
     }
 
-    public String verifyGitHubLogin(String gitHubLoginCode) {
+    public String verifyGitHubLogin(String code) {
+        // 1.) Verify code via GitHub
+        String gitHubToken = gitHubApiService.retrieveGitHubToken(code);
 
-        // Verify code via GitHub
-        String gitHubToken = gitHubApiService.getGitHubToken(gitHubLoginCode);
-
-        // Get user info
+        // 2.) Retrieve User Info
         GitHubUserDto gitHubUserDto = gitHubApiService.retrieveUserInfo(gitHubToken);
 
-        // Create JWT Access Token
-        return jwtUtilService.createToken(new HashMap<>(), gitHubUserDto.getUsername());
+        // 3.) Create JWT access token
+        return jwtUtilService.createToken(new HashMap<>(), gitHubUserDto.getLogin());
     }
 }

@@ -1,6 +1,6 @@
 package de.sanus.backend.security.controller;
 
-import de.sanus.backend.security.model.AppUser;
+import de.sanus.backend.security.dto.LoginDto;
 import de.sanus.backend.security.service.JWTUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 
-/**
+/*
  * Controller for Credential based logins
  */
 @RestController
@@ -29,12 +29,12 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@RequestBody AppUser appUser){
+    public String login(@RequestBody LoginDto loginDto){
 
         this.authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
 
-        return jwtService.createToken(new HashMap<>(), appUser.getUsername());
+        return jwtService.createToken(new HashMap<>(), loginDto.getUsername());
     }
 
 }

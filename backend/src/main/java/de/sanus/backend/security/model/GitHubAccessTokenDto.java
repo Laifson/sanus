@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class GitHubAccessTokenDto {
 
     @JsonProperty("access_token")
-    String accessToken;
+    private String accessToken;
 
 }

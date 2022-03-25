@@ -1,10 +1,0 @@
-
-j	java:S116"URename this field "JWT_SECRET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âş›
-N
-java:S3252"3Use static access with "java.util.Date" for "from".(èÿçüÿÿÿÿ
-I
-java:S3252"3Use static access with "java.util.Date" for "from".(²ªùŠ
-~
-java:S1319"cThe type of "claims" should be an interface such as "Map" rather than the implementation "HashMap".(¤¿Úùşÿÿÿÿ
-\
-java:S2184"FCast one of the operands of this multiplication operation to a "long".(ÚÿˆÜ

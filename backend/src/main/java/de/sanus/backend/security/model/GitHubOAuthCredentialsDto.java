@@ -9,10 +9,11 @@ import lombok.Data;
 public class GitHubOAuthCredentialsDto {
 
     @JsonProperty("client_id")
-    String clientId;
+    private String clientId;
 
     @JsonProperty("client_secret")
-    String clientSecret;
+    private String clientSecret;
 
-    String code;
+    @JsonProperty("code")
+    private String code;
 }
