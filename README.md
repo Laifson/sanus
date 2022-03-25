@@ -18,3 +18,11 @@ ___
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=laifson_sanus_frontend&metric=bugs)](https://sonarcloud.io/summary/new_code?id=laifson_sanus_frontend)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=laifson_sanus_frontend&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=laifson_sanus_frontend)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=laifson_sanus_frontend&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=laifson_sanus_frontend)
+
+
+&nbsp;
+### an example video of the first release
+___
+https://user-images.githubusercontent.com/79151389/160176379-f2c001f4-7e2f-4141-af42-9720ca008bf2.mp4
+
+
