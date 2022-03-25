@@ -29,7 +29,7 @@ class LoginControllerTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Value("${neuefische.todo.jwt.secret}")
+    @Value("${sanus.jwt.secret}")
     private String JWT_SECRET;
 
     @Test
@@ -75,7 +75,7 @@ class LoginControllerTest {
     }
 
     @Test
-    void loginWithWrongUsername() {
+    void login_WithWrongUsername() {
         //GIVEN
         AppUser appUser = new AppUser("wrongusername", "test-password");
 

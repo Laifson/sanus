@@ -31,13 +31,13 @@ class GitHubLoginControllerTest {
     @MockBean
     private RestTemplate restTemplate;
 
-    @Value("${de.neuefische.todo.github.clientid}")
+    @Value("${sanus.client.id}")
     private String clientId;
 
-    @Value("${de.neuefische.todo.github.clientsecret}")
+    @Value("${sanus.github.secret}")
     private String clientSecret;
 
-    @Value("${neuefische.todo.jwt.secret}")
+    @Value("${sanus.jwt.secret}")
     private String JWT_SECRET;
 
     @Test
