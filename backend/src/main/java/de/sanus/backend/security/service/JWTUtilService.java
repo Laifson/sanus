@@ -6,20 +6,20 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HashMap;
+import java.util.Date;
+import java.util.Map;
 
 @Service
 public class JWTUtilService {
 
     @Value("${sanus.jwt.secret}")
-    private String JWT_SECRET;
+    private String jwtSecret;
 
-    private long duration = 4 * 60 * 60 * 1000;
+    private long duration = 4L * 60L * 60L * 1000L;
 
-    public String createToken(HashMap<String, Object> claims, String subject) {
+    public String createToken(Map<String, Object> claims, String subject) {
 
         // Generate JWT
         return Jwts.builder()
@@ -27,12 +27,12 @@ public class JWTUtilService {
                 .setSubject(subject)
                 .setIssuedAt(Date.from(Instant.now()))
                 .setExpiration(Date.from(Instant.now().plus(Duration.ofMillis(duration))))
-                .signWith(SignatureAlgorithm.HS256, JWT_SECRET)
+                .signWith(SignatureAlgorithm.HS256, jwtSecret)
                 .compact();
     }
 
     public String extractUsername(String token) {
-        Claims claims = Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(token).getBody();
+        Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
         return claims.getSubject();
     }
 }

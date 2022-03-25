@@ -49,7 +49,7 @@ class GitHubApiServiceTest {
         ).thenReturn(ResponseEntity.ok(responseDto));
 
         //WHEN
-        String token = gitHubApiService.getGitHubToken(code);
+        String token = gitHubApiService.retrieveGitHubToken(code);
 
         //THEN
         assertThat(token, Matchers.is("someAccessToken"));
@@ -81,7 +81,7 @@ class GitHubApiServiceTest {
         GitHubUserDto gitHubUserDto = gitHubApiService.retrieveUserInfo(token);
 
         //THEN
-        assertThat(gitHubUserDto.getUsername(), Matchers.is("someLogin"));
+        assertThat(gitHubUserDto.getLogin(), Matchers.is("someLogin"));
 
         verify(restTemplate).exchange(
                 "https://api.github.com/user",
