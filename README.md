@@ -10,6 +10,7 @@ quite interesting, since the API response is very nested and confusing.**
 ___
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Laifson_sanus&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Laifson_sanus)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Laifson_sanus&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Laifson_sanus)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Laifson_sanus&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Laifson_sanus)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Laifson_sanus&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Laifson_sanus)
 
 &nbsp;
