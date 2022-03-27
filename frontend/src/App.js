@@ -16,7 +16,6 @@ import GlobalStyle from "./components/styles/GlobalStyle";
 import {ContentDiv, NavBarBottomWrapper} from "./AppElements";
 import PrivateRoute from "./routing/PrivateRoute";
 import GithubRedirect from "./routing/GitHubRedirect";
-import Kanban from "./components/kanban/Kanban";
 import "../node_modules/@syncfusion/ej2-react-kanban/styles/material.css";
 import useTherapists from "./hooks/useTherapists";
 
@@ -91,11 +90,6 @@ function App() {
                     <Route path='/profile' element={
                         <PrivateRoute>
                             <Profile/>
-                        </PrivateRoute>
-                    }/>
-                    <Route path='/kanban' element={
-                        <PrivateRoute>
-                            <Kanban/>
                         </PrivateRoute>
                     }/>
                 </Routes>

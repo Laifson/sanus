@@ -3,7 +3,8 @@ import BoardList from "./BoardList";
 import {Container} from "./BoardElements";
 import {DragDropContext} from 'react-beautiful-dnd';
 
-export default function Board({therapists, handleChangeStatus, removeTherapist}) {
+export default function Board({ therapists, handleChangeStatus, removeTherapist }) {
+
     return (
         <Container>
             <DragDropContext>

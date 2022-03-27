@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TherapistCard from "../cards/TherapistCardNew";
 import {
     Container,
@@ -10,17 +10,31 @@ import {
 
 export default function List({ therapists, setTherapists, removeTherapist }) {
     const [search, setSearch] = useState("");
+    const [sortType, setSortType] = useState('date');
 
     const filteredTherapists = therapists.filter(therapist =>
         (therapist.firstName.toLowerCase() + therapist.lastName.toLowerCase()).includes(search.toLowerCase())
     )
 
-
-
     const handleSearch = event => {
         const newSearch = event.target.value
         setSearch(newSearch)
     }
+
+    useEffect(() => {
+        const sortArray = type => {
+            const types = {
+                name: 'lastName',
+                date: 'dateAdded',
+                status: 'status',
+            };
+            const sortProperty = types[type];
+            const sorted = [...therapists].sort((a, b) => b[sortProperty] - a[sortProperty]);
+            setTherapists(sorted);
+        };
+
+        sortArray(sortType);
+    }, [sortType]);
 
     return (
         <Container>
@@ -36,11 +50,10 @@ export default function List({ therapists, setTherapists, removeTherapist }) {
                     <InputWrap class="control">
                         <div class="textfield">Sortieren:</div>
                         <div class="select">
-                            <select>
-                                <option value=""></option>
-                                <option value="Name" onClick={() => setTherapists(therapists.sort((a, b) => a.lastName.localeCompare(b.lastName)))}>Name</option>
-                                <option value="Date" onClick={null}>Datum</option>
-                                <option value="Status" onClick={() => setTherapists(therapists.sort((a, b) => a.status.localeCompare(b.status)))}>Status</option>
+                            <select onChange={(e) => setSortType(e.target.value)}>
+                                <option value="date">Datum</option>
+                                <option value="name">Name</option>
+                                <option value="status">Status</option>
                             </select>
                         </div>
                     </InputWrap>
