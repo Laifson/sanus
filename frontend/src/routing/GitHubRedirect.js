@@ -16,4 +16,4 @@ export default function GithubRedirect() {
     return (
         <p>Logging in...</p>
     )
-};
+}

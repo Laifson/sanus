@@ -2,36 +2,38 @@ import styled from 'styled-components/macro'
 import TherapistCard from "../cards/TherapistCardNew";
 import {DragDropContext} from "react-beautiful-dnd";
 
-export default function BoardList({columnHeader, therapists, statusToShow, handleChangeStatus, removeTherapist }) {
+export default function BoardList({ therapists, columnHeader, handleChangeStatus, statusToShow, removeTherapist }) {
 
     function onDrop(event, newStatus) {
         handleChangeStatus(JSON.parse(event.dataTransfer.getData("therapist")), newStatus)
     }
 
-    const filteredTherapists = therapists.filter((therapist)=> therapist.status === statusToShow)
+    const filteredTherapists = therapists.filter((therapist) => therapist.status === statusToShow)
 
     return (
         <DragDropContext>
-        <div class="container">
-            <TherapistListBoard droppable
-                           onDragOver={(e) => {
-                               e.preventDefault()
-                           }
-                           }
-                           onDrop={(e) => {
-                               onDrop(e, statusToShow)
-                           }
-                           }>
-                <h4>{columnHeader}</h4>
-                {filteredTherapists.length > 0 ? filteredTherapists.map((therapist) => {
-                    if (therapist.status === statusToShow) {
-                    return <TherapistCard therapist={therapist} key={therapist.id} handleDeleteTherapist={removeTherapist} removeTherapist={removeTherapist}/>
-                    }
-                    return null
-                }) : <div/>}
-            </TherapistListBoard>
-        </div>
-            </DragDropContext>
+            <div class="container" droppable
+                 onDragOver={(e) => {
+                     e.preventDefault()
+                 }
+                 }
+                 onDrop={(e) => {
+                     onDrop(e, statusToShow)
+                 }
+                 }>
+                <TherapistListBoard>
+                    <h4>{columnHeader}</h4>
+                    {filteredTherapists.length > 0 ? filteredTherapists.map((therapist) => {
+                        if (therapist.status === statusToShow) {
+                            return <TherapistCard therapist={therapist} key={therapist.id}
+                                                  handleDeleteTherapist={removeTherapist}
+                                                  removeTherapist={removeTherapist}/>
+                        }
+                        return null
+                    }) : <div/>}
+                </TherapistListBoard>
+            </div>
+        </DragDropContext>
     )
 }
 
