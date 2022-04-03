@@ -2,7 +2,6 @@ package de.sanus.backend.api.service;
 
 import de.sanus.backend.api.dto.KbvResultDto;
 import de.sanus.backend.api.dto.PractitionerEntriesDto;
-import de.sanus.backend.api.dto.resource.EntryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

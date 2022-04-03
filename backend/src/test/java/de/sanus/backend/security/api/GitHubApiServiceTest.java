@@ -65,7 +65,7 @@ class GitHubApiServiceTest {
     @Test
     void retrieveUserInfo() {
 
-        //GIVEN
+        // GIVEN
         String token = "someAccessToken";
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -77,10 +77,10 @@ class GitHubApiServiceTest {
                 new HttpEntity<>(httpHeaders),
                 GitHubUserDto.class)).thenReturn(ResponseEntity.ok(new GitHubUserDto("someLogin")));
 
-        //WHEN
+        // WHEN
         GitHubUserDto gitHubUserDto = gitHubApiService.retrieveUserInfo(token);
 
-        //THEN
+        // THEN
         assertThat(gitHubUserDto.getLogin(), Matchers.is("someLogin"));
 
         verify(restTemplate).exchange(

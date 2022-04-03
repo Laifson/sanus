@@ -45,9 +45,6 @@ class TherapistControllerTest {
         therapistRepo.deleteAll();
     }
 
-    @MockBean
-    private IdService idService;
-
     @LocalServerPort
     private int port;
 
